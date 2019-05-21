@@ -266,9 +266,9 @@ var _Atm = (function () {
                 var style = new ol.style.Style({
                     geometry: feature.getGeometry(),
                     image: new ol.style.Circle({
-                        radius: 10,
+                        radius: 7,
                         fill: new ol.style.Fill({
-                            color: '#ED7D31'
+                            color: 'red'
                         }),
                         stroke: new ol.style.Stroke({
                             color: '#AFABAB',
@@ -280,8 +280,8 @@ var _Atm = (function () {
                         fill: new ol.style.Fill({
                             color: '#007cf4'
                         }),
-                        offsetY: 25,
-                        font: 'bold 15px Arial',
+                        offsetY: 20,
+                        font: 'bold 12px Arial',
                         stroke: new ol.style.Stroke({
                             color: '#fff',
                             width: 2
