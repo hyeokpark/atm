@@ -300,13 +300,34 @@ var _Atm = (function () {
                 for (var i = 0; i < prop.name.length; i++) {
                     //prop.name[i];
                     var st;
+                    var color = null;
+
+                    //var styleObj = feature.getProperties().addr.indexOf('남동구');
+
+                    var styleObj = {
+                        '남동구': 'red',
+                        '연수구': 'blue',
+                        '미추홀구': 'green',
+                        '서구': 'yellow',
+                        '시흥시': 'darkorange',
+                        '중구': 'chartreuse'
+                    };
+
+                    for (key in styleObj) {
+                        if (feature.getProperties().addr.indexOf(key) > -1) {
+                            color = styleObj[key];
+                        }
+                    }
+
+                    color ? color : color = 'pink';
+
                     if (i == 0) {
                         st = new ol.style.Style({
                             geometry: feature.getGeometry(),
                             image: new ol.style.Circle({
                                 radius: 7,
                                 fill: new ol.style.Fill({
-                                    color: 'red'
+                                    color: color
                                 }),
                                 stroke: new ol.style.Stroke({
                                     color: '#AFABAB',
