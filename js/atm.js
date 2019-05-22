@@ -206,7 +206,7 @@ var _Atm = (function () {
                 arr.push(dataArr[i].name[j]);
             }
         }
-        //arr.sort();
+        arr.sort();
 
         for (var i = 0; i < arr.length; i++) {
             html += '<option value="' + arr[i] + '">' + arr[i] + '</option>';
