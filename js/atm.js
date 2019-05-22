@@ -215,7 +215,7 @@ var _Atm = (function () {
                 center: [14099330.817812243, 4500407.503618384],
                 minZoom: 7,
                 maxZoom: 19,
-                zoom: 10
+                zoom: 11
             })
         });
 
