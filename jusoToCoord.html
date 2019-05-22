@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <title>지점 가져오기</title>
+    <script type="text/javascript">
+        var timeObj = null;
+
+        $(function () {
+            $('#btn').on('click', function () {
+                $('#result').html('');
+                var text = $('#searchText').val();
+                var splitTxt = text.split(',');
+
+                var i = 0;
+
+                if (timeObj) {
+                    clearInterval(timeObj);
+                }
+
+                timeObj = setInterval(function () {
+                    if ((i + 1) >= splitTxt.length) {
+                        clearInterval(timeObj);
+                    }
+
+                    $.ajax({
+                        url: 'http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do'
+                        , type: 'POST'
+                        , data: {
+                            confmKey: 'U01TX0FVVEgyMDE4MTIxMTE2MzYyNDEwODM2MTE=',
+                            currentPage: 1,
+                            countPerPage: 1,
+                            keyword: splitTxt[i],
+                            resultType: 'json'
+                        }
+                        , dataType: "jsonp"
+                        , crossDomain: true
+                        , success: function (jsonStr) {
+
+                            if (jsonStr.results.juso) {
+                                if (jsonStr.results.juso.length > 0) {
+                                    $('#result').append(jsonStr.results.juso[0].jibunAddr + '<br />');
+                                } else {
+                                    $('#result').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                }
+                            } else {
+                                $('#result').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                            }
+
+                            i++;
+
+                        }
+                        , error: function (xhr, status, error) {
+                        }
+                    });
+
+                }, 1000);
+
+            })
+        });
+
+    </script>
+</head>
+
+<body>
+    <input id="searchText" type="text" />
+    <input id="btn" type="button" value="변환"/>
+    <div> ================================================= <br/>
+        1. 한줄로 <br/>
+        2. 쉼표로 연결 (경기도 남양주시 조안면 송촌리, 경기도 남양주시 조안면 송촌리)<br/>
+        =================================================
+    </div>
+    <div id="result">
+
+    </div>
+</body>
+
+</html>
