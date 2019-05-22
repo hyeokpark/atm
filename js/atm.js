@@ -206,8 +206,7 @@ var _Atm = (function () {
                 arr.push(dataArr[i].name[j]);
             }
         }
-
-        arr.sort();
+        //arr.sort();
 
         for (var i = 0; i < arr.length; i++) {
             html += '<option value="' + arr[i] + '">' + arr[i] + '</option>';
@@ -227,7 +226,7 @@ var _Atm = (function () {
             controls: ol.control.defaults({
                 attribution: false,
                 rotate: false,
-                zoom: true,
+                zoom: false,
                 forEachLayerAtPixel: true
             }).extend([new ol.interaction.DragRotate({
                 condition: function (e) {
