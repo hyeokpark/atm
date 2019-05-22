@@ -189,6 +189,33 @@ var _Atm = (function () {
         { name: ['현대 프리미엄 아울렛 송도'], addr: '인천광역시 연수구 송도국제대로 123', x: '925450.1762407259', y: '1931726.6847481355' }
     ];
 
+    var searchName = function (name) {
+        for (var i = 0; i < dataArr.length; i++) {
+            if (dataArr[i].name.indexOf(name) > -1) {
+                map.getView().setCenter(transformPoint(dataArr[i].x, dataArr[i].y));
+                map.getView().setZoom(16);
+            };
+        }
+    };
+
+    var setList = function () {
+        var html = '';
+        var arr = [];
+        for (var i = 0; i < dataArr.length; i++) {
+            for (var j = 0; j < dataArr[i].name.length; j++) {
+                arr.push(dataArr[i].name[j]);
+            }
+        }
+
+        arr.sort();
+
+        for (var i = 0; i < arr.length; i++) {
+            html += '<option value="' + arr[i] + '">' + arr[i] + '</option>';
+        }
+
+        $('#searchName').html(html);
+    };
+
     var createMap = function (id) {
         var mapLayers = [];
 
@@ -237,19 +264,24 @@ var _Atm = (function () {
         });
     };
 
-    var writeLayer = function () {
-        var pointArray = [];
-        var source;
+    var transformPoint = function (x, y) {
         proj4.defs('EPSG:5179', '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs');
 
         var ep1 = new proj4.Proj('EPSG:5179');
         var ep2 = new proj4.Proj('EPSG:3857');
+        var p = new proj4.Point(parseFloat(x), parseFloat(y));
+        var trans = proj4.transform(ep1, ep2, p);
+
+        return [trans.x, trans.y];
+    }
+    var writeLayer = function () {
+        var pointArray = [];
+        var source;
 
         for (var i = 0; i < dataArr.length; i++) {
-            var p = new proj4.Point(parseFloat(dataArr[i].x), parseFloat(dataArr[i].y));
-            var trans = proj4.transform(ep1, ep2, p);
+
             var feature = new ol.Feature();
-            feature.setGeometry(new ol.geom.Point([trans.x, trans.y]));
+            feature.setGeometry(new ol.geom.Point(transformPoint(dataArr[i].x, dataArr[i].y)));
             feature.setProperties(dataArr[i]);
             pointArray.push(feature);
         }
@@ -257,8 +289,6 @@ var _Atm = (function () {
         source = new ol.source.Vector({
             features: pointArray
         });
-
-
 
         var vectorLayer = new ol.layer.Vector({
             source: source,
@@ -325,9 +355,17 @@ var _Atm = (function () {
         map.addLayer(vectorLayer);
     };
 
+    var setEvent = function () {
+        $('#searchName').off('change').on('change', function () {
+            searchName($(this).val());
+        })
+    };
+
     return {
         init: function () {
             createMap('mapDiv');
+            setList();
+            setEvent();
         },
         getMap: function () {
             return map;
