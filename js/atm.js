@@ -319,7 +319,7 @@ var _Atm = (function () {
 
                     for (key in styleObj) {
                         if (feature.getProperties().addr.indexOf(key) > -1) {
-                            if(key=="연수구"){
+                            if(key=='연수구'){
                                 feature.getProperties().jibun.indexOf('송도동') > -1 ? color = 'fuchsia' : color = styleObj[key];
                             }else{
                                 color = styleObj[key];
