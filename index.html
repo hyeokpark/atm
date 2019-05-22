@@ -15,8 +15,18 @@
     <script src="./js/proj4.js"></script>
     <title>atm_v0.01</title>
     <script>
-        $(function(){
+        $(function () {
             _Atm.init();
+            setTimeout(function () { $(window).trigger('resize'); }, 1000);\
+            
+            $(window).on('resize', function () {
+                var ww = $(window).width();
+                var wh = $(window).height();
+
+                if (_Atm.getMap()) {
+                    _Atm.getMap().setSize([ww, wh]);
+                }
+            });
         })
     </script>
 
