@@ -203,6 +203,8 @@ var _Atm = (function () {
     var searchName = function (name) {
         for (var i = 0; i < dataArr.length; i++) {
             if (dataArr[i].name.indexOf(name) > -1) {
+                $('#addr').html(dataArr[i].jibun);
+                $('#addr').show();
                 map.getView().setCenter(transformPoint(dataArr[i].x, dataArr[i].y));
                 map.getView().setZoom(16);
             };
