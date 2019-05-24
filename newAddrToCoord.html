@@ -33,7 +33,7 @@
                     }
 
                     $.ajax({
-                        url: 'http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do'
+                        url: 'https://www.juso.go.kr/addrlink/addrLinkApiJsonp.do'
                         , type: 'POST'
                         , data: {
                             confmKey: 'U01TX0FVVEgyMDE4MTIxMTE2MzYyNDEwODM2MTE=',
@@ -51,7 +51,7 @@
                                     //$('#result').append((i + 1) + '. ' + splitTxt[i] + ' - ' + jsonStr.results.juso[0].admCd + '<br />');
                                     var paramObj = jsonStr.results.juso[0];
                                     $.ajax({
-                                        url: 'http://www.juso.go.kr/addrlink/addrCoordApiJsonp.do'
+                                        url: 'https://www.juso.go.kr/addrlink/addrCoordApiJsonp.do'
                                         , type: 'POST'
                                         , data: {
                                             confmKey: 'U01TX0FVVEgyMDE5MDUyMTE0MTMwODEwODc0NDI=',
@@ -95,7 +95,7 @@
     <input id="btn" type="button" value="변환" />
     <div> ================================================= <br />
         1. 한줄로 <br />
-        2. 쉼표로 연결 (인천광역시 연수구 테크노파크로 200)<br />
+        2. 쉼표로 연결 (인천광역시 연수구 테크노파크로 200,인천광역시 연수구 테크노파크로 200)<br />
         =================================================
     </div>
     <div id="result">
