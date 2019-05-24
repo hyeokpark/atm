@@ -115,7 +115,7 @@ var _Atm = (function () {
         { name: ['이마트 동인천점SC'], addr: '인천광역시 중구 인중로 134', x: '922988.2656142102', y: '1941172.2637899336', jibun: '인천광역시 중구 신생동 38 동인천이마트' },
         { name: ['이마트24 연수함박로'], addr: '인천광역시 연수구 함박로 36', x: '927543.317565355', y: '1936592.6575228586', jibun: '인천광역시 연수구 연수동 495-5' },
         { name: ['이수엑사보드 인천공장'], addr: '인천광역시 남동구 남동서로270번길 54', x: '929093.4386579194', y: '1935045.5201349352', jibun: '인천광역시 남동구 논현동 429-3' },
-        { name: ['인천 송도 컨벤시아'], addr: '인천광역시 연수구 센트럴로 123', x: '924456.9867797431', y: '1932661.4434322082', jibun: '인천광역시 연수구 송도동 6-1 송도컨벤시아' },
+        { name: ['송도 컨벤시아'], addr: '인천광역시 연수구 센트럴로 123', x: '924456.9867797431', y: '1932661.4434322082', jibun: '인천광역시 연수구 송도동 6-1 송도컨벤시아' },
         { name: ['인천5공단파출소결합부스'], addr: '인천광역시 서구 가재울로 75', x: '927648.8596204547', y: '1942435.9377577854', jibun: '인천광역시 서구 가좌동 540-3' },
         { name: ['인천경동점G'], addr: '인천광역시 중구 개항로 82', x: '923229.7654404601', y: '1941739.1997609003', jibun: '인천광역시 중구 경동 187-3 예지요양병원' },
         { name: ['인천글로벌운영재단', '한국뉴욕주립대학교 결합부스'], addr: '인천광역시 연수구 송도문화로 119', x: '926175.2482764572', y: '1930840.0637925412', jibun: '인천광역시 연수구 송도동 187 인천글로벌캠퍼스' },
@@ -201,13 +201,24 @@ var _Atm = (function () {
     ];
 
     var searchName = function (name) {
+        var isIn = false;
+        var result = null;
+
         for (var i = 0; i < dataArr.length; i++) {
             if (dataArr[i].name.indexOf(name) > -1) {
-                $('#addr').html(dataArr[i].jibun);
-                $('#addr').show();
-                map.getView().setCenter(transformPoint(dataArr[i].x, dataArr[i].y));
-                map.getView().setZoom(16);
+                isIn = true;
+                result = dataArr[i];
             };
+        }
+
+        if (isIn) {
+            $('#searchName').val(name);
+            $('#addr').html(result.jibun);
+            $('#addr').show();
+            map.getView().setCenter(transformPoint(result.x, result.y));
+            map.getView().setZoom(16);
+        } else {
+            alert('검색된 결과에서 선택하세요.');
         }
     };
 
@@ -226,6 +237,10 @@ var _Atm = (function () {
         }
 
         $('#searchName').html(html);
+
+        $('#searchText').autocomplete({
+            source: arr
+        });
     };
 
     var createMap = function (id) {
@@ -395,7 +410,11 @@ var _Atm = (function () {
     var setEvent = function () {
         $('#searchName').off('change').on('change', function () {
             searchName($(this).val());
-        })
+        });
+
+        $('#searchBtn').off('click').on('click', function () {
+            searchName($('#searchText').val());
+        });
     };
 
     return {

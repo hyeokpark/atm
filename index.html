@@ -7,10 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css"
         type="text/css">
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+
     <script src="./js/atm.js"></script>
     <script src="./js/proj4.js"></script>
     <title>atm_v0.02</title>
@@ -51,6 +54,35 @@
             border: 1px solid #595959;
             display: none;
         }
+
+        #searchText {
+            position: absolute;
+            z-index: 10;
+            left: 10px;
+            top: 80px;
+            padding: 5px 10px;
+        }
+
+        #searchBtn {
+            position: absolute;
+            z-index: 10;
+            left: 205px;
+            top: 82px;
+            background: #595959;
+            font-size: 13px;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .ui-widget {
+            font-family: Verdana, Arial, sans-serif;
+            font-size: 13px !important;
+        }
+        ul{
+            height: 300px;
+            overflow-y: auto;
+        }
     </style>
 
 <body style="margin: 0px;">
@@ -58,6 +90,10 @@
         <select id="searchName">
         </select>
         <div id="addr"></div>
+
+        <input type="text" id="searchText">
+        <a id="searchBtn">이동</a>
+    </div>
     </div>
 </body>
 
