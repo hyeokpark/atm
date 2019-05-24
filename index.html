@@ -4,8 +4,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery.min.js"></script>
@@ -47,7 +46,7 @@
             position: absolute;
             z-index: 10;
             left: 10px;
-            top: 40px;
+            top: 80px;
             padding: 5px 10px;
             font-size: 11px;
             background: white;
@@ -55,19 +54,17 @@
             display: none;
         }
 
-        #searchText {
+        #searchDiv{
             position: absolute;
             z-index: 10;
             left: 10px;
-            top: 80px;
+            top: 45px;
+        }
+        #searchText {
             padding: 5px 10px;
         }
 
         #searchBtn {
-            position: absolute;
-            z-index: 10;
-            left: 205px;
-            top: 82px;
             background: #595959;
             font-size: 13px;
             color: white;
@@ -91,8 +88,10 @@
         </select>
         <div id="addr"></div>
 
-        <!-- <input type="text" id="searchText">
-        <a id="searchBtn">이동</a> -->
+        <div id="searchDiv">
+            <input type="text" id="searchText">
+            <a id="searchBtn">이동</a>
+        </div>
     </div>
     </div>
 </body>

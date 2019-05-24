@@ -213,6 +213,7 @@ var _Atm = (function () {
 
         if (isIn) {
             $('#searchName').val(name);
+            $('#searchText').val(name);
             $('#addr').html(result.jibun);
             $('#addr').show();
             map.getView().setCenter(transformPoint(result.x, result.y));
