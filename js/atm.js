@@ -414,7 +414,7 @@ var _Atm = (function () {
                         st = new ol.style.Style({
                             geometry: feature.getGeometry(),
                             image: new ol.style.Circle({
-                                radius: 7,
+                                radius: 9,
                                 fill: new ol.style.Fill({
                                     color: color
                                 }),
@@ -475,14 +475,17 @@ var _Atm = (function () {
 
         map.on('singleclick', function (evt) {
             map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
-                Kakao.init('de26aa8bf86f397bb78cd6e6053439b2');
-                var trans = transformPointForWgs(feature.getProperties().x,feature.getProperties().y);
-                Kakao.Navi.start({
-                    name: feature.getProperties().addr,
-                    x: trans[0],
-                    y: trans[1],
-                    coordType: 'wgs84'
-                });
+
+                if (confirm('카카오네비로 이동하시겠습니까?')) {
+                    var trans = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
+                    Kakao.Navi.start({
+                        name: feature.getProperties().addr,
+                        x: trans[0],
+                        y: trans[1],
+                        coordType: 'wgs84'
+                    });
+                }
+
             });
         });
     };
@@ -490,6 +493,7 @@ var _Atm = (function () {
     return {
         init: function () {
             createMap('mapDiv');
+            Kakao.init('de26aa8bf86f397bb78cd6e6053439b2');
             setList();
             setEvent();
         },
