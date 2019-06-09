@@ -476,7 +476,12 @@ var _Atm = (function () {
         map.on('singleclick', function (evt) {
             map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
 
-                if (confirm('카카오네비로 이동하시겠습니까?')) {
+                var title = '';
+                for (var i = 0; i < feature.getProperties().name.length; i++) {
+                    title += '"' + feature.getProperties().name[i] + '",';
+                }
+
+                if (confirm(title.substr(0, title.length - 1) + '으로 카카오네비 안내를 시작할까요?')) {
                     var trans = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
                     Kakao.Navi.start({
                         name: feature.getProperties().addr,
