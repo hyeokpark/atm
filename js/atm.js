@@ -481,7 +481,7 @@ var _Atm = (function () {
                     title += '"' + feature.getProperties().name[i] + '",';
                 }
 
-                if (confirm(title.substr(0, title.length - 1) + '으로 카카오네비 안내를 시작할까요?')) {
+                if (confirm(title.substr(0, title.length - 1) + '으로 안내를 시작할까요?')) {
                     var trans = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
                     Kakao.Navi.start({
                         name: feature.getProperties().addr,
