@@ -1,6 +1,7 @@
 var _Atm = (function () {
     var map = null;
     var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/gray/service/{z}/{x}/{y}.png';
+    var _MapEventBus = $({});
 
     var dataArr = [
         { name: ['(주)비에스이'], addr: '인천광역시 남동구 남동서로 193', x: '928448.838274891', y: '1934545.4152585235', jibun: '인천광역시 남동구 고잔동 626-3 (주)이츠웰' },
@@ -339,7 +340,19 @@ var _Atm = (function () {
         var trans = proj4.transform(ep1, ep2, p);
 
         return [trans.x, trans.y];
-    }
+    };
+
+    var transformPointForWgs = function (x, y) {
+        proj4.defs('EPSG:5179', '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs');
+
+        var ep1 = new proj4.Proj('EPSG:5179');
+        var ep2 = new proj4.Proj('EPSG:4326');
+        var p = new proj4.Point(parseFloat(x), parseFloat(y));
+        var trans = proj4.transform(ep1, ep2, p);
+
+        return [trans.x, trans.y];
+    };
+
     var writeLayer = function () {
         var pointArray = [];
         var source;
@@ -458,6 +471,19 @@ var _Atm = (function () {
 
         $('#searchBtn').off('click').on('click', function () {
             searchName($('#searchText').val());
+        });
+
+        map.on('singleclick', function (evt) {
+            map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+                Kakao.init('de26aa8bf86f397bb78cd6e6053439b2');
+                var trans = transformPointForWgs(feature.getProperties().x,feature.getProperties().y);
+                Kakao.Navi.start({
+                    name: feature.getProperties().addr,
+                    x: trans[0],
+                    y: trans[1],
+                    coordType: 'wgs84'
+                });
+            });
         });
     };
 

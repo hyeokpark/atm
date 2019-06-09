@@ -15,6 +15,7 @@
 
     <script src="./js/atm.js"></script>
     <script src="./js/proj4.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <title>atm_v0.02</title>
     <script>
         $(function () {
@@ -54,12 +55,13 @@
             display: none;
         }
 
-        #searchDiv{
+        #searchDiv {
             position: absolute;
             z-index: 10;
             left: 10px;
             top: 45px;
         }
+
         #searchText {
             padding: 5px 10px;
         }
@@ -76,7 +78,8 @@
             font-family: Verdana, Arial, sans-serif;
             font-size: 13px !important;
         }
-        ul{
+
+        ul {
             height: 300px;
             overflow-y: auto;
         }
