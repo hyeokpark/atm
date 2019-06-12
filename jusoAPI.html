@@ -149,12 +149,6 @@
         ex) 인천광역시 연수구 테크노파크로 200,인천광역시 연수구 송도국제대로 261<br />
     </div>
     <div style="border: 1px solid #595959; width:583px; padding:10px; background: #f6f7e5;">
-        <label for="coord"></label> 좌표선택 : </label>
-        <select id="coord" style="margin-top: 10px;">
-            <option value="5179">EPSG:5179</option>
-            <option value="4326">EPSG:4326 (경위도)</option>
-        </select>
-        <br />
         <label>검색선택 : </label>
         <input type="checkbox" value="검색" id="checkJuso" checked style="margin-top: 10px;" />
         <label for="checkJuso">지번주소</label>
@@ -162,6 +156,12 @@
         <label for="checkAdm">법정동코드</label>
         <input type="checkbox" value="검색" id="checkCoord" checked />
         <label for="checkCoord">좌표</label>
+        <br />
+        <label for="coord"></label> 좌표선택 : </label>
+        <select id="coord" style="margin-top: 10px;">
+            <option value="5179">EPSG:5179</option>
+            <option value="4326">EPSG:4326 (경위도)</option>
+        </select>
         <br />
         <input id="searchText" type="text" style="margin-bottom:10px; width:150px; margin-top: 10px;" />
         <input id="btn" type="button" value="검색" />
