@@ -29,11 +29,15 @@
         $(function () {
 
             $('#btn').on('click', function () {
-                $('#resultJuso, #resultCoord, #resultAdmCode').html('');
+                $('#resultJuso, #resultCoordY, #resultCoordX, #resultAdmCode').html('');
                 var text = $('#searchText').val();
                 var splitTxt = text.split(',');
 
                 var i = 0;
+
+                $('#checkJuso').is(':checked') ? $('#resultViewJuso').show() : $('#resultViewJuso').hide();
+                $('#checkAdmCode').is(':checked') ? $('#resultViewAdmCode').show() : $('#resultViewAdmCode').hide();
+                $('#checkCoord').is(':checked') ? $('#resultViewCoord').show() : $('#resultViewCoord').hide();
 
                 if (timeObj) {
                     clearInterval(timeObj);
@@ -79,29 +83,27 @@
                                             var val = $('#item').val();
                                             var coord = $('#coord').val();
 
-                                            var str = '';
+                                            var strX, strY = '';
 
                                             if (coord == '4326') {
                                                 var trans = transformPointForWgs(jsonStr.results.juso[0].entX, jsonStr.results.juso[0].entY);
                                                 jsonStr.results.juso[0].entX = trans[0];
                                                 jsonStr.results.juso[0].entY = trans[1];
                                             }
-                                            if (val == 'x') {
-                                                str = jsonStr.results.juso[0].entX;
-                                            } else if (val == 'y') {
-                                                str = jsonStr.results.juso[0].entY;
-                                            } else {
-                                                str = jsonStr.results.juso[0].entX + ',' + jsonStr.results.juso[0].entY;
-                                            }
+                                            strX = jsonStr.results.juso[0].entX;
+                                            strY = jsonStr.results.juso[0].entY;
 
-                                            $('#resultCoord').append(str + '<br/>');
+                                            $('#resultCoordX').append(strX + '\n');
+                                            $('#resultCoordY').append(strY + '\n');
                                         }
                                     });
                                 } else {
-                                    $('#resultCoord').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                    $('#resultCoordX').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '\n');
+                                    $('#resultCoordY').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '\n');
                                 }
                             } else {
-                                $('#resultCoord').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                $('#resultCoordX').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '\n');
+                                $('#resultCoordY').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '\n');
                             }
 
                             if (jsonStr.results.juso) {
@@ -109,15 +111,15 @@
                                     var flag = $('#flag').val();
                                     var str = '';
 
-                                    $('#resultJuso').append(jsonStr.results.juso[0].jibunAddr + '<br />');
-                                    $('#resultAdmCode').append(jsonStr.results.juso[0].admCd + '<br />');
+                                    $('#resultJuso').append(jsonStr.results.juso[0].jibunAddr + '\n');
+                                    $('#resultAdmCode').append(jsonStr.results.juso[0].admCd + '\n');
                                 } else {
-                                    $('#resultJuso').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
-                                    $('#resultAdmCode').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                    $('#resultJuso').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '\n');
+                                    $('#resultAdmCode').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '\n');
                                 }
                             } else {
-                                $('#resultJuso').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
-                                $('#resultAdmCode').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                $('#resultJuso').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '\n');
+                                $('#resultAdmCode').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '\n');
                             }
 
                             i++;
@@ -133,39 +135,54 @@
         });
 
     </script>
+    <style>
+        body {
+            letter-spacing: -1px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
-    <label for="coord">좌표선택</label>
-    <select id="coord">
-        <option value="5179">EPSG:5179</option>
-        <option value="4326">EPSG:4326 (경위도)</option>
-    </select>
-    <select id="item">
-        <option value="x">x값만 표출</option>
-        <option value="y">y값만 표출</option>
-        <option value="both">x,y</option>
-    </select>
-    <br />
-    <input id="searchText" type="text" />
-    <input id="btn" type="button" value="검색" />
-    <br />
+    <div style="background: #585de8; color:#fff; font-weight: bold; padding: 15px 10px; width: 585px;">
+        * 다중 검색시 검색어 "," 로 연결<br /><br />
+        ex) 인천광역시 연수구 테크노파크로 200,인천광역시 연수구 송도국제대로 261<br />
+    </div>
+    <div style="border: 1px solid #595959; width:583px; padding:10px; background: #f6f7e5;">
+        <label for="coord"></label> 좌표선택 : </label>
+        <select id="coord" style="margin-top: 10px;">
+            <option value="5179">EPSG:5179</option>
+            <option value="4326">EPSG:4326 (경위도)</option>
+        </select>
+        <br />
+        <label>검색선택 : </label>
+        <input type="checkbox" value="검색" id="checkJuso" checked style="margin-top: 10px;" />
+        <label for="checkJuso">지번주소</label>
+        <input type="checkbox" value="검색" id="checkAdmCode" checked />
+        <label for="checkAdm">법정동코드</label>
+        <input type="checkbox" value="검색" id="checkCoord" checked />
+        <label for="checkCoord">좌표</label>
+        <br />
+        <input id="searchText" type="text" style="margin-bottom:10px; width:150px; margin-top: 10px;" />
+        <input id="btn" type="button" value="검색" />
+    </div>
+    <div id="resultViewJuso" style="display: none; margin-bottom: 10px; margin-top: 10px;">
+        <div style="font-weight: bold; margin-bottom: 5px;">검색결과 (도로명 -> 지번주소 영역)</div>
+        <textarea id="resultJuso" style="width: 600px; height: 200px; resize:none;" readonly></textarea>
+    </div>
 
-    <div> ================================================= <br />
-        1. 한줄로 <br />
-        2. 쉼표로 연결 (인천광역시 연수구 테크노파크로 200,인천광역시 연수구 테크노파크로 200)<br />
-        =================================================
+    <div id="resultViewAdmCode" style="display: none; margin-bottom: 10px;">
+        <div style="font-weight: bold; margin-bottom: 5px;">검색결과 (도로명 -> 법정동코드 영역)</div>
+        <textarea id="resultAdmCode" style="width: 600px; height: 200px; resize:none;" readonly></textarea>
     </div>
-    <div>도로명 -> 지번주소</div>
-    <div id="resultJuso" style="border: 1px solid #000; height: 200px; width: 600px; overflow: auto;">
-    </div>
-    <br />
-    <div>도로명 -> 법정동코드</div>
-    <div id="resultAdmCode" style="border: 1px solid #000; height: 200px; width: 600px; overflow: auto;">
-    </div>
-    <br />
-    <div>도로명 -> 좌표</div>
-    <div id="resultCoord" style="border: 1px solid #000; height: 200px;width: 600px; overflow: auto;">
+
+    <div id="resultViewCoord" style="display: none;">
+        <div style="font-weight: bold; margin-bottom: 5px;">검색결과 (도로명 -> X좌표, Y좌표 영역)</div>
+        <div style="display: flex;">
+            <textarea id="resultCoordX" style="width: 295px; height: 200px; resize:none; margin-right:10px;"
+                readonly></textarea>
+            <textarea id="resultCoordY" style="width: 295px; height: 200px; resize:none;" readonly></textarea>
+        </div>
     </div>
 </body>
 
