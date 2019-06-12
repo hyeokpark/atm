@@ -10,14 +10,26 @@
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./js/proj4.js"></script>
 
     <title>주소 API</title>
     <script type="text/javascript">
         var timeObj = null;
+        var transformPointForWgs = function (x, y) {
+            proj4.defs('EPSG:5179', '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs');
+
+            var ep1 = new proj4.Proj('EPSG:5179');
+            var ep2 = new proj4.Proj('EPSG:4326');
+            var p = new proj4.Point(parseFloat(x), parseFloat(y));
+            var trans = proj4.transform(ep1, ep2, p);
+
+            return [trans.x, trans.y];
+        };
 
         $(function () {
             $('#flag').on('change', function () {
                 $(this).val() == 'coord' ? $('#item').show() : $('#item').hide();
+                $(this).val() == 'coord' ? $('#coord').show() : $('#coord').hide();
             });
 
             $('#btn').on('click', function () {
@@ -71,8 +83,15 @@
                                             , crossDomain: true
                                             , success: function (jsonStr) {
                                                 var val = $('#item').val();
+                                                var coord = $('#coord').val();
 
                                                 var str = '';
+
+                                                if (coord == '4326') {
+                                                    var trans = transformPointForWgs(jsonStr.results.juso[0].entX, jsonStr.results.juso[0].entY);
+                                                    jsonStr.results.juso[0].entX = trans[0];
+                                                    jsonStr.results.juso[0].entY = trans[1];
+                                                }
                                                 if (val == 'x') {
                                                     str = jsonStr.results.juso[0].entX;
                                                 } else if (val == 'y') {
@@ -123,6 +142,10 @@
     <select id="flag">
         <option value="juso">주소</option>
         <option value="coord">좌표</option>
+    </select>
+    <select id="coord" style="display: none;">
+        <option value="5179">EPSG:5179</option>
+        <option value="4326">EPSG:4326</option>
     </select>
     <select id="item" style="display: none;">
         <option value="x">x</option>
