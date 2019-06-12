@@ -12,7 +12,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./js/proj4.js"></script>
 
-    <title>주소 API</title>
+    <title>주소 API 도로명을 변환</title>
     <script type="text/javascript">
         var timeObj = null;
         var transformPointForWgs = function (x, y) {
@@ -27,13 +27,9 @@
         };
 
         $(function () {
-            $('#flag').on('change', function () {
-                $(this).val() == 'coord' ? $('#item').show() : $('#item').hide();
-                $(this).val() == 'coord' ? $('#coord').show() : $('#coord').hide();
-            });
 
             $('#btn').on('click', function () {
-                $('#result').html('');
+                $('#resultJuso, #resultCoord, #resultAdmCode').html('');
                 var text = $('#searchText').val();
                 var splitTxt = text.split(',');
 
@@ -62,76 +58,71 @@
                         , crossDomain: true
                         , success: function (jsonStr) {
                             var split = splitTxt[i];
-                            var flag = $('#flag').val();
-                            if (flag == 'coord') {
-                                if (jsonStr.results.juso) {
-                                    if (jsonStr.results.juso.length > 0) {
-                                        var paramObj = jsonStr.results.juso[0];
-                                        $.ajax({
-                                            url: 'https://www.juso.go.kr/addrlink/addrCoordApiJsonp.do'
-                                            , type: 'POST'
-                                            , data: {
-                                                confmKey: 'U01TX0FVVEgyMDE5MDUyMTE0MTMwODEwODc0NDI=',
-                                                admCd: paramObj.admCd,
-                                                rnMgtSn: paramObj.rnMgtSn,
-                                                udrtYn: paramObj.udrtYn,
-                                                buldMnnm: paramObj.buldMnnm,
-                                                buldSlno: paramObj.buldSlno,
-                                                resultType: 'json'
-                                            }
-                                            , dataType: 'jsonp'
-                                            , crossDomain: true
-                                            , success: function (jsonStr) {
-                                                var val = $('#item').val();
-                                                var coord = $('#coord').val();
-
-                                                var str = '';
-
-                                                if (coord == '4326') {
-                                                    var trans = transformPointForWgs(jsonStr.results.juso[0].entX, jsonStr.results.juso[0].entY);
-                                                    jsonStr.results.juso[0].entX = trans[0];
-                                                    jsonStr.results.juso[0].entY = trans[1];
-                                                }
-                                                if (val == 'x') {
-                                                    str = jsonStr.results.juso[0].entX;
-                                                } else if (val == 'y') {
-                                                    str = jsonStr.results.juso[0].entY;
-                                                } else {
-                                                    str = jsonStr.results.juso[0].entX + ',' + jsonStr.results.juso[0].entY;
-                                                }
-
-                                                $('#result').append(str + '<br/>');
-                                            }
-                                        });
-                                    } else {
-                                        $('#result').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
-                                    }
-                                } else {
-                                    $('#result').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
-                                }
-
-                                i++;
-                            } else {
-                                if (jsonStr.results.juso) {
-                                    if (jsonStr.results.juso.length > 0) {
-                                        var flag = $('#flag').val();
-                                        var str = '';
-                                        if (flag == 'admCode') {
-                                            str = jsonStr.results.juso[0].admCd;
-                                        } else {
-                                            str = jsonStr.results.juso[0].jibunAddr;
+                            if (jsonStr.results.juso) {
+                                if (jsonStr.results.juso.length > 0) {
+                                    var paramObj = jsonStr.results.juso[0];
+                                    $.ajax({
+                                        url: 'https://www.juso.go.kr/addrlink/addrCoordApiJsonp.do'
+                                        , type: 'POST'
+                                        , data: {
+                                            confmKey: 'U01TX0FVVEgyMDE5MDUyMTE0MTMwODEwODc0NDI=',
+                                            admCd: paramObj.admCd,
+                                            rnMgtSn: paramObj.rnMgtSn,
+                                            udrtYn: paramObj.udrtYn,
+                                            buldMnnm: paramObj.buldMnnm,
+                                            buldSlno: paramObj.buldSlno,
+                                            resultType: 'json'
                                         }
-                                        $('#result').append(str + '<br />');
-                                    } else {
-                                        $('#result').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
-                                    }
-                                } else {
-                                    $('#result').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
-                                }
+                                        , dataType: 'jsonp'
+                                        , crossDomain: true
+                                        , success: function (jsonStr) {
+                                            var val = $('#item').val();
+                                            var coord = $('#coord').val();
 
-                                i++;
+                                            var str = '';
+
+                                            if (coord == '4326') {
+                                                var trans = transformPointForWgs(jsonStr.results.juso[0].entX, jsonStr.results.juso[0].entY);
+                                                jsonStr.results.juso[0].entX = trans[0];
+                                                jsonStr.results.juso[0].entY = trans[1];
+                                            }
+                                            if (val == 'x') {
+                                                str = jsonStr.results.juso[0].entX;
+                                            } else if (val == 'y') {
+                                                str = jsonStr.results.juso[0].entY;
+                                            } else {
+                                                str = jsonStr.results.juso[0].entX + ',' + jsonStr.results.juso[0].entY;
+                                            }
+
+                                            $('#resultCoord').append(str + '<br/>');
+                                        }
+                                    });
+                                } else {
+                                    $('#resultCoord').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                }
+                            } else {
+                                $('#resultCoord').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
                             }
+
+                            if (jsonStr.results.juso) {
+                                if (jsonStr.results.juso.length > 0) {
+                                    var flag = $('#flag').val();
+                                    var str = '';
+
+                                    $('#resultJuso').append(jsonStr.results.juso[0].jibunAddr + '<br />');
+                                    $('#resultAdmCode').append(jsonStr.results.juso[0].admCd + '<br />');
+                                } else {
+                                    $('#resultJuso').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                    $('#resultAdmCode').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                }
+                            } else {
+                                $('#resultJuso').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                                $('#resultAdmCode').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
+                            }
+
+                            i++;
                         }
+
                         , error: function (xhr, status, error) {
                         }
                     });
@@ -145,28 +136,36 @@
 </head>
 
 <body>
-    <input id="searchText" type="text" />
-    <select id="flag">
-        <option value="juso">주소</option>
-        <option value="admCode">법정동코드</option>
-        <option value="coord">좌표</option>
-    </select>
-    <select id="coord" style="display: none;">
+    <label for="coord">좌표선택</label>
+    <select id="coord">
         <option value="5179">EPSG:5179</option>
-        <option value="4326">EPSG:4326</option>
+        <option value="4326">EPSG:4326 (경위도)</option>
     </select>
-    <select id="item" style="display: none;">
-        <option value="x">x</option>
-        <option value="y">y</option>
+    <select id="item">
+        <option value="x">x값만 표출</option>
+        <option value="y">y값만 표출</option>
         <option value="both">x,y</option>
     </select>
-    <input id="btn" type="button" value="변환" />
+    <br />
+    <input id="searchText" type="text" />
+    <input id="btn" type="button" value="검색" />
+    <br />
+
     <div> ================================================= <br />
         1. 한줄로 <br />
         2. 쉼표로 연결 (인천광역시 연수구 테크노파크로 200,인천광역시 연수구 테크노파크로 200)<br />
         =================================================
     </div>
-    <div id="result">
+    <div>도로명 -> 지번주소</div>
+    <div id="resultJuso" style="border: 1px solid #000; height: 200px; width: 600px; overflow: auto;">
+    </div>
+    <br />
+    <div>도로명 -> 법정동코드</div>
+    <div id="resultAdmCode" style="border: 1px solid #000; height: 200px; width: 600px; overflow: auto;">
+    </div>
+    <br />
+    <div>도로명 -> 좌표</div>
+    <div id="resultCoord" style="border: 1px solid #000; height: 200px;width: 600px; overflow: auto;">
     </div>
 </body>
 
