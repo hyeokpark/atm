@@ -114,7 +114,14 @@
                             } else {
                                 if (jsonStr.results.juso) {
                                     if (jsonStr.results.juso.length > 0) {
-                                        $('#result').append(jsonStr.results.juso[0].jibunAddr + '<br />');
+                                        var flag = $('#flag').val();
+                                        var str = '';
+                                        if (flag == 'admCode') {
+                                            str = jsonStr.results.juso[0].admCd;
+                                        } else {
+                                            str = jsonStr.results.juso[0].jibunAddr;
+                                        }
+                                        $('#result').append(str + '<br />');
                                     } else {
                                         $('#result').append((i + 1) + '. ' + splitTxt[i] + ' - ' + 'X' + '<br />');
                                     }
@@ -141,6 +148,7 @@
     <input id="searchText" type="text" />
     <select id="flag">
         <option value="juso">주소</option>
+        <option value="admCode">법정동코드</option>
         <option value="coord">좌표</option>
     </select>
     <select id="coord" style="display: none;">
