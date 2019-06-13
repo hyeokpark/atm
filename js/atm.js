@@ -2,6 +2,17 @@ var _Atm = (function () {
     var map = null;
     var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/gray/service/{z}/{x}/{y}.png';
 
+    //var baseMapUrl = 'http://map.ngii.go.kr/proxys/2015_map/korean_map_tile/L{z}/{x}/{y}.png';
+
+    var overlay_getTileURL = function (bounds) {
+        var res = this.map.getResolution();
+        var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
+        var y = Math.round((bounds.bottom - this.maxExtent.bottom) / (res * this.tileSize.h));
+        var z = this.map.getZoom() + 6;
+        z = "L" + fillzero(z, 2);
+        return this.url + z + "/" + x + "/" + y + "." + this.type;
+    };
+
     var dataArr = [
         { name: ['(주)비에스이'], addr: '인천광역시 남동구 남동서로 193', x: '928448.838274891', y: '1934545.4152585235', jibun: '인천광역시 남동구 고잔동 626-3 (주)이츠웰' },
         { name: ['(주)씨에스티'], addr: '인천광역시 남동구 남동대로 248', x: '929162.2536080531', y: '1934468.471045103', jibun: '인천광역시 남동구 논현동 444-4' },
@@ -236,7 +247,8 @@ var _Atm = (function () {
         { name: ['부평갈산점G'], addr: '인천광역시 부평구 굴포로 50-10', x: '931629.6382923902', y: '1946047.8260866501', jibun: '인천광역시 부평구 갈산동 367-2' },
         { name: ['부평우림점G'], addr: '인천광역시 부평구 부평대로 283', x: '931164.0193303828', y: '1946691.216097455', jibun: '인천광역시 부평구 청천동 425 부평우림라이온스밸리' },
         { name: ['계양국제점M'], addr: '인천광역시 계양구 계양문화로29번길 10', x: '932417.39154975', y: '1948532.5869564335', jibun: '인천광역시 계양구 작전동 907-6 태진프라자' },
-        { name: ['송도센트럴점G'], addr: '인천광역시 연수구 송도국제대로 261', x: '924676.6906859279', y: '1930858.557839889', jibun: '인천광역시 연수구 송도동 190-4 송도 더샵 센트럴시티' }
+        { name: ['송도센트럴점G'], addr: '인천광역시 연수구 송도국제대로 261', x: '924676.6906859279', y: '1930858.557839889', jibun: '인천광역시 연수구 송도동 190-4 송도 더샵 센트럴시티' },
+        { name: ['송도이편한점G'], addr: '인천광역시 연수구 랜드마크로 113', x: '921810.1679151095', y: '1935243.4228121955', jibun: '인천광역시 연수구 송도동 319-1 e편한세상 송도' }
     ];
 
     var searchName = function (name) {
@@ -329,7 +341,46 @@ var _Atm = (function () {
             group: options.group != null ? options.group : 'GrayMap',
             visible: options.isVisible != null ? options.isVisible : false
         });
+        // var source = new ol.source.XYZ(
+        //     {
+        //         attributions: [],
+        //         url: 'http://map.ngii.go.kr/proxys/2015_map/korean_map_tile/L{z}/{x}/{y}.png',
+        //         tileUrlFunction: function (a, b, c) {
+
+        //             var res = map.getView().getResolution();
+        //             var extent = map.getView().calculateExtent();
+
+        //             var x = Math.round((c.getExtent()[0] - extent[0])
+        //                 / (res * 256));
+        //             var y = Math.round((c.getExtent()[1] - extent[1])
+        //                 / (res * 256));
+        //             var z = map.getView().getZoom() + 6;
+
+        //             z = parseInt(fillzero(z, 2))
+
+        //             return 'http://map.ngii.go.kr/proxys/2015_map/korean_map_tile/' + z + "/" + x + "/" + y + "." + 'png';
+
+        //         }
+        //     })
+
+        // return new ol.layer.Tile({
+        //     title: '바로이맵',
+        //     visible: true,
+        //     type: 'base',
+        //     source: source
+        // })
     };
+
+    var fillzero = function (n, digits) {
+        var zero = '';
+        n = n.toString();
+        if (digits > n.length) {
+            for (var i = 0; digits - n.length > i; i++) {
+                zero += '0';
+            }
+        }
+        return zero + n;
+    }
 
     var transformPoint = function (x, y) {
         proj4.defs('EPSG:5179', '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs');
