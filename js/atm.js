@@ -2,17 +2,6 @@ var _Atm = (function () {
     var map = null;
     var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/gray/service/{z}/{x}/{y}.png';
 
-    //var baseMapUrl = 'http://map.ngii.go.kr/proxys/2015_map/korean_map_tile/L{z}/{x}/{y}.png';
-
-    var overlay_getTileURL = function (bounds) {
-        var res = this.map.getResolution();
-        var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-        var y = Math.round((bounds.bottom - this.maxExtent.bottom) / (res * this.tileSize.h));
-        var z = this.map.getZoom() + 6;
-        z = "L" + fillzero(z, 2);
-        return this.url + z + "/" + x + "/" + y + "." + this.type;
-    };
-
     var dataArr = [
         { name: ['(주)비에스이'], addr: '인천광역시 남동구 남동서로 193', x: '928448.838274891', y: '1934545.4152585235', jibun: '인천광역시 남동구 고잔동 626-3 (주)이츠웰' },
         { name: ['(주)씨에스티'], addr: '인천광역시 남동구 남동대로 248', x: '929162.2536080531', y: '1934468.471045103', jibun: '인천광역시 남동구 논현동 444-4' },
@@ -296,11 +285,6 @@ var _Atm = (function () {
     };
 
     var createMap = function (id) {
-        var mapLayers = [];
-
-        mapLayers[0] = (createVWorldMapLayer({
-            isVisible: true
-        }));
 
         map = new ol.Map({
             controls: ol.control.defaults({
@@ -314,7 +298,9 @@ var _Atm = (function () {
                 }
             })]),
             target: id,
-            layers: mapLayers,
+            layers: [(createVWorldMapLayer({
+                isVisible: true
+            }))],
             view: new ol.View({
                 enableRotation: false,
                 rotation: 0,
@@ -341,46 +327,7 @@ var _Atm = (function () {
             group: options.group != null ? options.group : 'GrayMap',
             visible: options.isVisible != null ? options.isVisible : false
         });
-        // var source = new ol.source.XYZ(
-        //     {
-        //         attributions: [],
-        //         url: 'http://map.ngii.go.kr/proxys/2015_map/korean_map_tile/L{z}/{x}/{y}.png',
-        //         tileUrlFunction: function (a, b, c) {
-
-        //             var res = map.getView().getResolution();
-        //             var extent = map.getView().calculateExtent();
-
-        //             var x = Math.round((c.getExtent()[0] - extent[0])
-        //                 / (res * 256));
-        //             var y = Math.round((c.getExtent()[1] - extent[1])
-        //                 / (res * 256));
-        //             var z = map.getView().getZoom() + 6;
-
-        //             z = parseInt(fillzero(z, 2))
-
-        //             return 'http://map.ngii.go.kr/proxys/2015_map/korean_map_tile/' + z + "/" + x + "/" + y + "." + 'png';
-
-        //         }
-        //     })
-
-        // return new ol.layer.Tile({
-        //     title: '바로이맵',
-        //     visible: true,
-        //     type: 'base',
-        //     source: source
-        // })
     };
-
-    var fillzero = function (n, digits) {
-        var zero = '';
-        n = n.toString();
-        if (digits > n.length) {
-            for (var i = 0; digits - n.length > i; i++) {
-                zero += '0';
-            }
-        }
-        return zero + n;
-    }
 
     var transformPoint = function (x, y) {
         proj4.defs('EPSG:5179', '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs');
