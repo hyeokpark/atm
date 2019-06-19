@@ -26,6 +26,33 @@
             return [trans.x, trans.y];
         };
 
+        var testArr = ['인천광역시 연수구 테크노파크로 200', '인천광역시 연수구 송도국제대로 261', '인천광역시 부평구 새갈로 22', '경기도 김포시 풍무로96번길 102'];
+
+        var testIdx = 0;
+        var ajaxTest = function (text) {
+            $.ajax({
+                url: 'https://www.juso.go.kr/addrlink/addrLinkApiJsonp.do'
+                , type: 'POST'
+                , data: {
+                    confmKey: 'U01TX0FVVEgyMDE4MTIxMTE2MzYyNDEwODM2MTE=',
+                    currentPage: 1,
+                    countPerPage: 1,
+                    keyword: text,
+                    resultType: 'json'
+                }
+                , dataType: 'jsonp'
+                , crossDomain: true
+            }).done(function (jsonStr) {
+                if (testArr.length > testIdx) {
+                    console.log(jsonStr.results.juso[0].admCd);
+                    testIdx++;
+                    ajaxTest(testArr[testIdx]);
+                } else {
+                    testIdx = 0;
+                }
+            });
+        };
+
         $(function () {
 
             $('#btn').on('click', function () {
