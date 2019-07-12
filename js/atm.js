@@ -416,6 +416,8 @@ var _Atm = (function () {
         }
         arr.sort();
 
+        $('#cntText').html('총 ' + arr.length + '개 지점');
+        
         for (var i = 0; i < arr.length; i++) {
             html += '<option value="' + arr[i] + '">' + arr[i] + '</option>';
         }
