@@ -839,7 +839,7 @@ var _Atm = (function () {
                             text: new ol.style.Text({
                                 text: prop.name[i],
                                 fill: new ol.style.Fill({
-                                    color: '#007cf4'
+                                    color: color
                                 }),
                                 offsetY: 20,
                                 font: 'bold 12px Arial',
@@ -855,7 +855,7 @@ var _Atm = (function () {
                             text: new ol.style.Text({
                                 text: prop.name[i],
                                 fill: new ol.style.Fill({
-                                    color: '#007cf4'
+                                    color: color
                                 }),
                                 offsetY: 35,
                                 font: 'bold 12px Arial',
