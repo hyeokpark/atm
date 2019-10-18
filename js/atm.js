@@ -839,14 +839,15 @@ var _Atm = (function () {
                             text: new ol.style.Text({
                                 text: prop.name[i],
                                 fill: new ol.style.Fill({
-                                    color: color
+                                    color: '#fff'
                                 }),
                                 offsetY: 20,
                                 font: 'bold 12px Arial',
                                 stroke: new ol.style.Stroke({
-                                    color: '#fff',
+                                    color: '#000',
                                     width: 2
-                                })
+                                }),
+                                backgroundFill: new ol.style.Fill({color: color}),
                             })
                         });
                     } else {
@@ -855,14 +856,15 @@ var _Atm = (function () {
                             text: new ol.style.Text({
                                 text: prop.name[i],
                                 fill: new ol.style.Fill({
-                                    color: color
+                                    color: '#fff'
                                 }),
                                 offsetY: 35,
                                 font: 'bold 12px Arial',
                                 stroke: new ol.style.Stroke({
-                                    color: '#fff',
+                                    color: '#000',
                                     width: 2
-                                })
+                                }),
+                                backgroundFill: new ol.style.Fill({color: color}),
                             })
                         });
                     }
