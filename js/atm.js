@@ -890,25 +890,33 @@ var _Atm = (function () {
             searchName($('#searchText').val());
         });
 
+        $('#routeSearch').off('click').on('click', function () {
+            if($('#routeSearch')[0].checked){
+                alert('길찾기 모드가 활성화됩니다. 지도 클릭시 안내창이 나타납니다.');
+            }
+        });
+
         map.on('singleclick', function (evt) {
-            map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+            if($('#routeSearch')[0].checked){
+                map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
 
-                var title = '';
-                for (var i = 0; i < feature.getProperties().name.length; i++) {
-                    title += '"' + feature.getProperties().name[i] + '",';
-                }
-
-                if (confirm(title.substr(0, title.length - 1) + '으로 안내를 시작할까요?')) {
-                    var trans = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
-                    Kakao.Navi.start({
-                        name: feature.getProperties().addr,
-                        x: trans[0],
-                        y: trans[1],
-                        coordType: 'wgs84'
-                    });
-                }
-
-            });
+                    var title = '';
+                    for (var i = 0; i < feature.getProperties().name.length; i++) {
+                        title += '"' + feature.getProperties().name[i] + '",';
+                    }
+    
+                    if (confirm(title.substr(0, title.length - 1) + '으로 안내를 시작할까요?')) {
+                        var trans = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
+                        Kakao.Navi.start({
+                            name: feature.getProperties().addr,
+                            x: trans[0],
+                            y: trans[1],
+                            coordType: 'wgs84'
+                        });
+                    }
+    
+                });
+            }
         });
     };
 
