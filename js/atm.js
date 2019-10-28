@@ -652,7 +652,8 @@ var _Atm = (function () {
         { name: ['오정꿈사랑점G'], addr: '경기도 부천시 고강로72번길 67', x: '939230.1719082401', y: '1947730.1810172102', jibun: '경기도 부천시 고강동 309-7' },
         { name: ['소사양우점G'], addr: '경기도 부천시 소사로126번길 38', x: '937966.1869897868', y: '1941468.926802727', jibun: '경기도 부천시 소사본동 301-33' },
         { name: ['대우테크노'], addr: '경기도 부천시 도약로 261', x: '936255.1819255364', y: '1945952.2251118254', jibun: '경기도 부천시 도당동 187-7 부천대우테크노파크' },
-        { name: ['소사본점M'], addr: '경기도 부천시 소사로102번길 66', x: '938200.8458626668', y: '1941296.4629685902', jibun: '경기도 부천시 소사본동 401-12 소사주공1단지아파트' }
+        { name: ['소사본점M'], addr: '경기도 부천시 소사로102번길 66', x: '938200.8458626668', y: '1941296.4629685902', jibun: '경기도 부천시 소사본동 401-12 소사주공1단지아파트' },
+        { name: ['부천팰리스G'], addr: '경기도 부천시 부일로 341', x: '935309.0815022006', y: '1943487.5970368409', jibun: '경기도 부천시 중동 1289' }
     ];
 
     var searchName = function (name) {
@@ -891,20 +892,20 @@ var _Atm = (function () {
         });
 
         $('#routeSearch').off('click').on('click', function () {
-            if($('#routeSearch')[0].checked){
+            if ($('#routeSearch')[0].checked) {
                 alert('길찾기 모드가 활성화됩니다. 지도 클릭시 안내창이 나타납니다.');
             }
         });
 
         map.on('singleclick', function (evt) {
-            if($('#routeSearch')[0].checked){
+            if ($('#routeSearch')[0].checked) {
                 map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
 
                     var title = '';
                     for (var i = 0; i < feature.getProperties().name.length; i++) {
                         title += '"' + feature.getProperties().name[i] + '",';
                     }
-    
+
                     if (confirm(title.substr(0, title.length - 1) + '으로 안내를 시작할까요?')) {
                         var trans = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
                         Kakao.Navi.start({
@@ -914,7 +915,7 @@ var _Atm = (function () {
                             coordType: 'wgs84'
                         });
                     }
-    
+
                 });
             }
         });
