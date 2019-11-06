@@ -1011,7 +1011,7 @@ var _Atm = (function () {
             p2 = resultArr[i + 1];
 
             if (!p2) {
-                return;
+                break;
             }
 
             var featureLine = new ol.Feature({
@@ -1062,7 +1062,8 @@ var _Atm = (function () {
             arrays = [1, 2, 3, 4, 5, 6];
             var resultArr = [];
             for (var i = 0; i < arrays.length; i++) {
-                resultArr.push([dataArr[arrays[i]].x, dataArr[arrays[i]].y]);
+                var tr = transformPoint(parseFloat(dataArr[arrays[i]].x), parseFloat(dataArr[arrays[i]].y));
+                resultArr.push([tr[0], tr[1]]);
             }
             writeLine(resultArr);
         }
