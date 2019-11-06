@@ -1012,7 +1012,7 @@ var _Atm = (function () {
         setButton: function (me) {
             btnCnt++
             $(me).hide();
-            $('#mother').append('<br/><select id="select' + btnCnt + '" class="selectBox"></select><input type="button" onclick="_Atm.setButton(this);" value="지점추가" class="plus" />');
+            $('#mother').append('<br/><br/><select id="select' + btnCnt + '" class="selectBox"></select><input type="button" onclick="_Atm.setButton(this);" value="지점추가" class="plus" />');
             _Atm.setOption('select' + btnCnt);
         }
     };
