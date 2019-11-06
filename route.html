@@ -18,14 +18,22 @@
         });
     </script>
     <style>
-
+        .selectBox {
+            position: absolute;
+            z-index: 10;
+            left: 10px;
+            top: 10px;
+            width: 250px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
     </style>
 
 <body style="margin: 0px;">
     <div id="mother">
         <input type="button" value="경로 검색" />
-        <br/>
-        <select id="select0">
+        <br />
+        <select id="select0" class="selectBox">
         </select>
         <input type="button" value="추가" class="plus" onclick="_Atm.setButton(this);" />
     </div>

@@ -718,7 +718,7 @@ var _Atm = (function () {
 
     var setOption = function (id) {
         var arr = [];
-        var html = '';
+        var html = '<option value="none">선택하세요.</option>';
         for (var i = 0; i < dataArr.length; i++) {
             for (var j = 0; j < dataArr[i].name.length; j++) {
                 arr.push({ value: i, name: dataArr[i].name[j] });
@@ -1012,7 +1012,7 @@ var _Atm = (function () {
         setButton: function (me) {
             btnCnt++
             $(me).hide();
-            $('#mother').append('<br/><select id="select' + btnCnt + '"></select><input type="button" onclick="_Atm.setButton(this);" value="추가" class="plus" />');
+            $('#mother').append('<br/><select id="select' + btnCnt + '" class="selectBox"></select><input type="button" onclick="_Atm.setButton(this);" value="추가" class="plus" />');
             _Atm.setOption('select' + btnCnt);
         }
     };
