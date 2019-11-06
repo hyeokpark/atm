@@ -953,16 +953,23 @@ var _Atm = (function () {
         });
 
         if (resultArr.length != selectArr.length) {
-            var ii = 1;
 
-            if (resultArr.indexOf(routeArr[ii].idx) > -1) {
-                ii = 2;
+            for (var i = 0; i < routeArr.length; i++) {
+                if (resultArr.indexOf(routeArr[i].idx) == -1) {
+                    resultArr.push(routeArr[i].idx);
+                    searchRoute(routeArr[i].idx, selectArr);
+                    return;
+                }
             }
-
-            resultArr.push(routeArr[ii].idx);
-            searchRoute(routeArr[ii].idx, selectArr);
         } else {
-            console.log('finish');
+            for (var i = 0; i < resultArr.length; i++) {
+                var text = '';
+                for (var j = 0; j < dataArr[resultArr[i]].name; j++) {
+                    text += dataArr[resultArr[i]].name[j] + ' ';
+                }
+
+                console.log(text);
+            }
         }
     };
 
