@@ -724,7 +724,15 @@ var _Atm = (function () {
                 arr.push({ value: i, name: dataArr[i].name[j] });
             }
         }
-        arr.sort();
+        arr.sort(function (a, b) {
+            if (a.name < b.name) {
+                return -1;
+            }
+            if (a.name > b.name) {
+                return 1;
+            }
+            return 0;
+        });
 
         for (var i = 0; i < arr.length; i++) {
             html += '<option value="' + arr[i].value + '">' + arr[i].name + '</option>';
@@ -979,14 +987,17 @@ var _Atm = (function () {
                 }
             }
         } else {
+            var text = '';
             for (var i = 0; i < resultArr.length; i++) {
-                var text = '';
-                for (var j = 0; j < dataArr[resultArr[i]].name.length; j++) {
-                    text += dataArr[resultArr[i]].name[j] + ' ';
+                for (var j = 0; j < $('.selectBox').length; j++) {
+                    if ($($('.selectBox')[j]).val() == resultArr[i]) {
+                        if (text.indexOf($('#' + $($('.selectBox')[j]).attr('id') + ' option:selected').text()) == -1) {
+                            text += (i + 1) + '. ' + $('#' + $($('.selectBox')[j]).attr('id') + ' option:selected').text() + '\n';
+                        }
+                    }
                 }
-
-                console.log(text);
             }
+            alert(text);
         }
     };
 
