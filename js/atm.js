@@ -1025,7 +1025,7 @@ var _Atm = (function () {
             source: vectorLine,
             style: new ol.style.Style({
                 fill: new ol.style.Fill({ color: '#00FF00', weight: 4 }),
-                stroke: new ol.style.Stroke({ color: '#00FF00', width: 2 })
+                stroke: new ol.style.Stroke({ color: '#00FF00', width: 20 })
             })
         });
 
@@ -1059,7 +1059,7 @@ var _Atm = (function () {
         },
 
         writeLine: function (arrays) {
-            arrays = [1, 2, 3, 4, 5, 6];
+            arrays = ["486", "638", "516", "453", "452", "588", "581", "639", "585", "463", "374", "416", "3", "389", "191"];
             var resultArr = [];
             for (var i = 0; i < arrays.length; i++) {
                 var tr = transformPoint(parseFloat(dataArr[arrays[i]].x), parseFloat(dataArr[arrays[i]].y));
