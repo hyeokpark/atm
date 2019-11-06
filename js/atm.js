@@ -937,7 +937,7 @@ var _Atm = (function () {
 
         var routeArr = [];
         for (var j = 0; j < selectArr.length; j++) {
-            routeArr.push({ idx: idx, route: Math.sqrt(Math.pow((dataArr[idx].x - dataArr[selectArr[j]].x), 2) + Math.pow((dataArr[idx].y - dataArr[selectArr[j]].y), 2)) });
+            routeArr.push({ idx: selectArr[i], route: Math.sqrt(Math.pow((dataArr[idx].x - dataArr[selectArr[j]].x), 2) + Math.pow((dataArr[idx].y - dataArr[selectArr[j]].y), 2)) });
         }
 
         routeArr.sort(function (a, b) {
@@ -952,8 +952,7 @@ var _Atm = (function () {
 
         for (var i = 0; i < routeArr.length; i++) {
             if (resultArr.indexOf(routeArr[i].idx) == -1) {
-                resultArr.push(routeArr[i].idx);
-                break;
+                return routeArr[i].idx;
             }
         }
     };
@@ -971,7 +970,7 @@ var _Atm = (function () {
 
         initSearch: function (arr) {
             for (var i = 0; i < arr.length; i++) {
-                searchRoute(arr[i], arr);
+                resultArr.push(searchRoute(arr[i], arr));
             }
         }
     };
