@@ -1001,6 +1001,37 @@ var _Atm = (function () {
         }
     };
 
+
+    var writeLine = function (resultArr) {
+        var p1, p2 = null;
+        var vectorLine = new ol.source.Vector({});
+
+        for (var i = 0; i < resultArr.length; i++) {
+            p1 = resultArr[i];
+            p2 = resultArr[i + 1];
+
+            if (!p2) {
+                return;
+            }
+
+            var featureLine = new ol.Feature({
+                geometry: new ol.geom.LineString([p1, p2])
+            });
+
+            vectorLine.addFeature(featureLine);
+        }
+
+        var vectorLineLayer = new ol.layer.Vector({
+            source: vectorLine,
+            style: new ol.style.Style({
+                fill: new ol.style.Fill({ color: '#00FF00', weight: 4 }),
+                stroke: new ol.style.Stroke({ color: '#00FF00', width: 2 })
+            })
+        });
+
+        map.addLayer(vectorLineLayer);
+    };
+
     return {
         init: function () {
             createMap('mapDiv');
@@ -1025,6 +1056,15 @@ var _Atm = (function () {
             $(me).hide();
             $('#mother').append('<br/><br/><select id="select' + btnCnt + '" class="selectBox"></select><input type="button" onclick="_Atm.setButton(this);" value="지점추가" class="plus" />');
             _Atm.setOption('select' + btnCnt);
+        },
+
+        writeLine: function (arrays) {
+            arrays = [1, 2, 3, 4, 5, 6];
+            var resultArr = [];
+            for (var i = 0; i < arrays.length; i++) {
+                resultArr.push([dataArr[arrays[i]].x, dataArr[arrays[i]].y]);
+            }
+            writeLine(resultArr);
         }
     };
 })();
