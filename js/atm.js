@@ -668,7 +668,7 @@ var _Atm = (function () {
 
     var resultArr = [];
 
-    var selectArrIdx = 0;
+    var btnCnt = 1;
 
     var searchName = function (name) {
         var isIn = false;
@@ -1008,6 +1008,12 @@ var _Atm = (function () {
         },
         setOption: function (id) {
             setOption(id);
+        },
+        setButton: function () {
+            btnCnt++
+            $(this).hide();
+            $('#mother').append('<br/><select id="select' + btnCnt + '"></select><input type="button" onclick="_Atm.setButton(this);" value="추가" class="plus" />');
+            _Atm.setOption('select' + btnCnt);
         }
     };
 })();
