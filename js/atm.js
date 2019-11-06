@@ -668,6 +668,8 @@ var _Atm = (function () {
 
     var resultArr = [];
 
+    var selectArrIdx = 0;
+
     var searchName = function (name) {
         var isIn = false;
         var result = null;
@@ -937,7 +939,7 @@ var _Atm = (function () {
 
         var routeArr = [];
         for (var j = 0; j < selectArr.length; j++) {
-            routeArr.push({ idx: selectArr[i], route: Math.sqrt(Math.pow((dataArr[idx].x - dataArr[selectArr[j]].x), 2) + Math.pow((dataArr[idx].y - dataArr[selectArr[j]].y), 2)) });
+            routeArr.push({ idx: selectArr[j], route: Math.sqrt(Math.pow((dataArr[idx].x - dataArr[selectArr[j]].x), 2) + Math.pow((dataArr[idx].y - dataArr[selectArr[j]].y), 2)) });
         }
 
         routeArr.sort(function (a, b) {
@@ -950,10 +952,14 @@ var _Atm = (function () {
             return 0;
         });
 
-        for (var i = 0; i < routeArr.length; i++) {
-            if (resultArr.indexOf(routeArr[i].idx) == -1) {
-                return routeArr[i].idx;
-            }
+        if (resultArr.indexOf(routeArr[1].idx) == -1) {
+            resultArr.push(routeArr[1].idx);
+        };
+
+        if (resultArr.length != selectArr.length) {
+            searchRoute(routeArr[1].idx, selectArr);
+        }else{
+            console.log('finish');
         }
     };
 
@@ -969,9 +975,9 @@ var _Atm = (function () {
         },
 
         initSearch: function (arr) {
-            for (var i = 0; i < arr.length; i++) {
-                resultArr.push(searchRoute(arr[i], arr));
-            }
+            resultArr = [];
+            resultArr.push(arr[0]);
+            searchRoute(arr[0], arr);
         }
     };
 })();
