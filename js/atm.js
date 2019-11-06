@@ -666,6 +666,8 @@ var _Atm = (function () {
         { name: ['도당공단점M'], addr: '경기도 부천시 옥산로 241', x: '936377.7291935734', y: '1946469.2891681967', jibun: '경기도 부천시 도당동 11-5' }
     ];
 
+    var resultArr = [];
+
     var searchName = function (name) {
         var isIn = false;
         var result = null;
@@ -931,6 +933,31 @@ var _Atm = (function () {
         });
     };
 
+    var searchRoute = function (idx, selectArr) {
+
+        var routeArr = [];
+        for (var j = 0; j < selectArr.length; j++) {
+            routeArr.push({ idx: idx, route: Math.sqrt(Math.pow((dataArr[idx].x - dataArr[selectArr[j]].x), 2) + Math.pow((dataArr[idx].y - dataArr[selectArr[j]].y), 2)) });
+        }
+
+        routeArr.sort(function (a, b) {
+            if (a.route < b.route) {
+                return -1;
+            }
+            if (a.route > b.route) {
+                return 1;
+            }
+            return 0;
+        });
+
+        for (var i = 0; i < routeArr.length; i++) {
+            if (resultArr.indexOf(routeArr[i].idx) == -1) {
+                resultArr.push(routeArr[i].idx);
+                break;
+            }
+        }
+    };
+
     return {
         init: function () {
             createMap('mapDiv');
@@ -940,6 +967,12 @@ var _Atm = (function () {
         },
         getMap: function () {
             return map;
+        },
+
+        initSearch: function (arr) {
+            for (var i = 0; i < arr.length; i++) {
+                searchRoute(arr[i], arr);
+            }
         }
     };
 })();
