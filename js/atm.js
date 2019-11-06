@@ -716,6 +716,23 @@ var _Atm = (function () {
         });
     };
 
+    var setOption = function (id) {
+        var arr = [];
+        var html = '';
+        for (var i = 0; i < dataArr.length; i++) {
+            for (var j = 0; j < dataArr[i].name.length; j++) {
+                arr.push({ value: i, name: dataArr[i].name[j] });
+            }
+        }
+        arr.sort();
+
+        for (var i = 0; i < arr.length; i++) {
+            html += '<option value="' + arr[i].value + '">' + arr[i].name + '</option>';
+        }
+
+        $('#' + id).html(html);
+    };
+
     var createMap = function (id) {
 
         map = new ol.Map({
@@ -988,6 +1005,9 @@ var _Atm = (function () {
             resultArr = [];
             resultArr.push(arr[0]);
             searchRoute(arr[0], arr);
+        },
+        setOption: function (id) {
+            setOption(id);
         }
     };
 })();
