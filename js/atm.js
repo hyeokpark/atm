@@ -964,7 +964,7 @@ var _Atm = (function () {
         } else {
             for (var i = 0; i < resultArr.length; i++) {
                 var text = '';
-                for (var j = 0; j < dataArr[resultArr[i]].name; j++) {
+                for (var j = 0; j < dataArr[resultArr[i]].name.length; j++) {
                     text += dataArr[resultArr[i]].name[j] + ' ';
                 }
 
