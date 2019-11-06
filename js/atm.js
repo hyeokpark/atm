@@ -952,13 +952,16 @@ var _Atm = (function () {
             return 0;
         });
 
-        if (resultArr.indexOf(routeArr[1].idx) == -1) {
-            resultArr.push(routeArr[1].idx);
-        };
-
         if (resultArr.length != selectArr.length) {
-            searchRoute(routeArr[1].idx, selectArr);
-        }else{
+            var ii = 1;
+
+            if (resultArr.indexOf(routeArr[ii].idx) > -1) {
+                ii = 2;
+            }
+
+            resultArr.push(routeArr[ii].idx);
+            searchRoute(routeArr[ii].idx, selectArr);
+        } else {
             console.log('finish');
         }
     };
