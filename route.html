@@ -15,6 +15,19 @@
     <script>
         $(function () {
             _Atm.setOption('select0');
+
+            $('#route').on('click', function () {
+                var selectBox = $('.selectBox');
+                var arr = [];
+                for (var i = 0; i < selectBox.length; i++) {
+                    if ($(selectBox[i]).val() != 'none') {
+                        if (arr.indexOf($(selectBox[i]).val()) == -1) {
+                            arr.push($(selectBox[i]).val());
+                        }
+                    }
+                }
+                initSearch(arr);
+            });
         });
     </script>
     <style>
@@ -27,11 +40,11 @@
 
 <body style="margin: 0px;">
     <div id="mother">
-        <input type="button" value="경로 검색" />
+        <input type="button" value="경로 검색" id="route" />
         <br />
         <select id="select0" class="selectBox">
         </select>
-        <input type="button" value="추가" class="plus" onclick="_Atm.setButton(this);" />
+        <input type="button" value="지점 추가" class="plus" onclick="_Atm.setButton(this);" />
     </div>
 </body>
 
