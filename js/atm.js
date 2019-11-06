@@ -1009,9 +1009,9 @@ var _Atm = (function () {
         setOption: function (id) {
             setOption(id);
         },
-        setButton: function () {
+        setButton: function (me) {
             btnCnt++
-            $(this).hide();
+            $(me).hide();
             $('#mother').append('<br/><select id="select' + btnCnt + '"></select><input type="button" onclick="_Atm.setButton(this);" value="추가" class="plus" />');
             _Atm.setOption('select' + btnCnt);
         }
