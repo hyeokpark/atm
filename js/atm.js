@@ -677,6 +677,8 @@ var _Atm = (function () {
 
     var btnCnt = 1;
 
+    var searchTextArr = [];
+
     var searchName = function (name) {
         var isIn = false;
         var result = null;
@@ -721,31 +723,6 @@ var _Atm = (function () {
         $('#searchText').autocomplete({
             source: arr
         });
-    };
-
-    var setOption = function (id) {
-        var arr = [];
-        var html = '<option value="none">선택하세요.</option>';
-        for (var i = 0; i < dataArr.length; i++) {
-            for (var j = 0; j < dataArr[i].name.length; j++) {
-                arr.push({ value: i, name: dataArr[i].name[j] });
-            }
-        }
-        arr.sort(function (a, b) {
-            if (a.name < b.name) {
-                return -1;
-            }
-            if (a.name > b.name) {
-                return 1;
-            }
-            return 0;
-        });
-
-        for (var i = 0; i < arr.length; i++) {
-            html += '<option value="' + arr[i].value + '">' + arr[i].name + '</option>';
-        }
-
-        $('#' + id).html(html);
     };
 
     var createMap = function (id) {
@@ -997,9 +974,9 @@ var _Atm = (function () {
             var text = '';
             for (var i = 0; i < resultArr.length; i++) {
                 for (var j = 0; j < $('.selectBox').length; j++) {
-                    if ($($('.selectBox')[j]).val() == resultArr[i]) {
-                        if (text.indexOf($('#' + $($('.selectBox')[j]).attr('id') + ' option:selected').text()) == -1) {
-                            text += (i + 1) + '. ' + $('#' + $($('.selectBox')[j]).attr('id') + ' option:selected').text() + '\n';
+                    if ($($('.selectBox')[j]).attr('value') == resultArr[i]) {
+                        if (text.indexOf($($('.selectBox')[j]).val()) == -1) {
+                            text += (i + 1) + '. ' + $($('.selectBox')[j]).val() + '\n';
                         }
                     }
                 }
@@ -1061,8 +1038,15 @@ var _Atm = (function () {
         setButton: function (me) {
             btnCnt++
             $(me).hide();
-            $('#mother').append('<br/><br/><select id="select' + btnCnt + '" class="selectBox"></select><input type="button" onclick="_Atm.setButton(this);" value="지점추가" class="plus" />');
-            _Atm.setOption('select' + btnCnt);
+            $('#mother').append('<br/><br/><input id="select' + btnCnt + '" class="selectBox" type="text"><input type="button" onclick="_Atm.setButton(this);" value="지점추가" class="plus" />');
+
+            $('#select' + btnCnt).autocomplete({
+                source: searchTextArr,
+                select: function (event, ui) {
+                    $(this).attr('value', ui.item.idx);
+                }
+            });
+
         },
 
         writeLine: function (arrays) {
@@ -1073,6 +1057,23 @@ var _Atm = (function () {
                 resultArr.push([tr[0], tr[1]]);
             }
             writeLine(resultArr);
+        },
+        initFirst: function () {
+            searchTextArr = [];
+            for (var i = 0; i < dataArr.length; i++) {
+                for (var j = 0; j < dataArr[i].name.length; j++) {
+                    searchTextArr.push({ value: dataArr[i].name[j], idx: i });
+                }
+            }
+            searchTextArr.sort();
+
+
+            $('#select0').autocomplete({
+                source: searchTextArr,
+                select: function (event, ui) {
+                    $(this).attr('value', ui.item.idx);
+                }
+            });
         }
     };
 })();

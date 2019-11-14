@@ -14,15 +14,16 @@
     <title>atm_v0.02</title>
     <script>
         $(function () {
-            _Atm.setOption('select0');
+
+            _Atm.initFirst();
 
             $('#route').on('click', function () {
                 var selectBox = $('.selectBox');
                 var arr = [];
                 for (var i = 0; i < selectBox.length; i++) {
-                    if ($(selectBox[i]).val() != 'none') {
-                        if (arr.indexOf($(selectBox[i]).val()) == -1) {
-                            arr.push($(selectBox[i]).val());
+                    if ($(selectBox[i]).attr('value') != 'none') {
+                        if (arr.indexOf($(selectBox[i]).attr('value')) == -1) {
+                            arr.push($(selectBox[i]).attr('value'));
                         }
                     }
                 }
@@ -43,8 +44,7 @@
         <input type="button" value="경로 검색" id="route" />
         <br />
         <br />
-        <select id="select0" class="selectBox">
-        </select>
+        <input id="select0" class="selectBox" type="" />
         <input type="button" value="지점 추가" class="plus" onclick="_Atm.setButton(this);" />
     </div>
 </body>
