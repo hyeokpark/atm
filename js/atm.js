@@ -1,6 +1,6 @@
 var _Atm = (function () {
     var map = null;
-    var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/gray/service/{z}/{x}/{y}.png';
+    var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png';
 
     var dataArr = [
         { name: ['(주)비에스이'], addr: '인천광역시 남동구 남동서로 193', x: '928448.838274891', y: '1934545.4152585235', jibun: '인천광역시 남동구 고잔동 626-3 (주)이츠웰' },
@@ -940,7 +940,6 @@ var _Atm = (function () {
         { name: ['풍무가나점G'], addr: '경기도 김포시 양도로19번길 7', x: '931547.0556053799', y: '1956686.5019823099', jibun: '경기도 김포시 풍무동 199' },
         { name: ['인천계산점G'], addr: '인천광역시 계양구 주부토로529번길 14', x: '931688.6628442116', y: '1949419.0991203631', jibun: '인천광역시 계양구 계산동 951-13' },
         { name: ['작전광원점G'], addr: '인천광역시 계양구 도두리로 10', x: '932423.67075733', y: '1948554.99928898', jibun: '인천광역시 계양구 작전동 907-1 광원프라자' }
-
     ];
 
     var resultArr = [];
@@ -1018,7 +1017,7 @@ var _Atm = (function () {
                 center: [14099330.817812243, 4500407.503618384],
                 minZoom: 7,
                 maxZoom: 19,
-                zoom: 11
+                zoom: 12
             })
         });
 
@@ -1118,52 +1117,60 @@ var _Atm = (function () {
                     }
 
                     color ? color : color = 'springgreen';
-
-                    if (i == 0) {
+                    if (map.getView().getZoom() > 13) {
+                        if (i == 0) {
+                            st = new ol.style.Style({
+                                geometry: feature.getGeometry(),
+                                image: new ol.style.Circle({
+                                    radius: 6,
+                                    fill: new ol.style.Fill({
+                                        color: color
+                                    }),
+                                    stroke: new ol.style.Stroke({
+                                        color: '#000',
+                                        width: 3
+                                    })
+                                }),
+                                text: new ol.style.Text({
+                                    text: ' ' + prop.name[i] + ' ',
+                                    fill: new ol.style.Fill({
+                                        color: '#fff'
+                                    }),
+                                    offsetY: 20,
+                                    font: 'bold 12px Malgun Gothic',
+                                    backgroundFill: new ol.style.Fill({ color: '#000' })
+                                })
+                            });
+                        } else {
+                            st = new ol.style.Style({
+                                geometry: feature.getGeometry(),
+                                text: new ol.style.Text({
+                                    text: ' ' + prop.name[i] + ' ',
+                                    fill: new ol.style.Fill({
+                                        color: '#fff'
+                                    }),
+                                    offsetY: 35,
+                                    font: 'bold 12px Malgun Gothic',
+                                    backgroundFill: new ol.style.Fill({ color: '#000' })
+                                })
+                            });
+                        }
+                    } else {
                         st = new ol.style.Style({
                             geometry: feature.getGeometry(),
                             image: new ol.style.Circle({
-                                radius: 9,
+                                radius: 6,
                                 fill: new ol.style.Fill({
                                     color: color
                                 }),
                                 stroke: new ol.style.Stroke({
-                                    color: '#AFABAB',
+                                    color: '#000',
                                     width: 3
                                 })
-                            }),
-                            text: new ol.style.Text({
-                                text: prop.name[i],
-                                fill: new ol.style.Fill({
-                                    color: '#fff'
-                                }),
-                                offsetY: 20,
-                                font: 'bold 12px Arial',
-                                stroke: new ol.style.Stroke({
-                                    color: '#000',
-                                    width: 2
-                                }),
-                                backgroundFill: new ol.style.Fill({ color: color }),
-                            })
-                        });
-                    } else {
-                        st = new ol.style.Style({
-                            geometry: feature.getGeometry(),
-                            text: new ol.style.Text({
-                                text: prop.name[i],
-                                fill: new ol.style.Fill({
-                                    color: '#fff'
-                                }),
-                                offsetY: 35,
-                                font: 'bold 12px Arial',
-                                stroke: new ol.style.Stroke({
-                                    color: '#000',
-                                    width: 2
-                                }),
-                                backgroundFill: new ol.style.Fill({ color: color }),
                             })
                         });
                     }
+
 
                     style.push(st);
                 }
