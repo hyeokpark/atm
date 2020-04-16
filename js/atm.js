@@ -949,6 +949,8 @@ var _Atm = (function () {
 
     var searchTextArr = [];
 
+    var overlay = null;
+
     var searchName = function (name) {
         var isIn = false;
         var result = null;
@@ -997,6 +999,14 @@ var _Atm = (function () {
 
     var createMap = function (id) {
 
+        overlay = new ol.Overlay({
+            element: document.getElementById('popup'),
+            autoPan: true,
+            autoPanAnimation: {
+                duration: 250
+            }
+        });
+
         map = new ol.Map({
             controls: ol.control.defaults({
                 attribution: false,
@@ -1012,6 +1022,7 @@ var _Atm = (function () {
             layers: [(createVWorldMapLayer({
                 isVisible: true
             }))],
+            overlays: [overlay],
             view: new ol.View({
                 enableRotation: false,
                 rotation: 0,
@@ -1184,6 +1195,12 @@ var _Atm = (function () {
     };
 
     var setEvent = function () {
+
+        $('#popup-closer').off('click').on('click', function () {
+            overlay.setPosition(undefined);
+            $('#popup').hide();
+        });
+
         $('#searchName').off('change').on('change', function () {
             searchName($(this).val());
         });
@@ -1199,26 +1216,21 @@ var _Atm = (function () {
         });
 
         map.on('singleclick', function (evt) {
-            if ($('#routeSearch')[0].checked) {
-                map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+            $('#popup').hide();
+            map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+                $('#popup').show();
 
-                    var title = '';
-                    for (var i = 0; i < feature.getProperties().name.length; i++) {
-                        title += '"' + feature.getProperties().name[i] + '",';
-                    }
 
-                    if (confirm(title.substr(0, title.length - 1) + '으로 안내를 시작할까요?')) {
-                        var trans = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
-                        Kakao.Navi.start({
-                            name: feature.getProperties().addr,
-                            x: trans[0],
-                            y: trans[1],
-                            coordType: 'wgs84'
-                        });
-                    }
 
-                });
-            }
+                var title = '';
+                for (var i = 0; i < feature.getProperties().name.length; i++) {
+                    title += feature.getProperties().name[i] + '<br/>';
+                }
+
+                $('#popup-content').html('<div style="font-weight:bold; font-size:13px; margin-bottom: 5px;">' + title + '</div>' + '<div style="font-size:11px; margin-bottom: 2px;">[도로명] ' + feature.getProperties().addr + '</div><div style="font-size:11px;">[주소] ' + feature.getProperties().jibun + '</div>');
+
+                overlay.setPosition(feature.getGeometry().getCoordinates());
+            });
         });
     };
 
