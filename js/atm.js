@@ -1230,8 +1230,12 @@ var _Atm = (function () {
                 for (var i = 0; i < feature.getProperties().name.length; i++) {
                     title += feature.getProperties().name[i] + '<br/>';
                 }
+                var html = '<div style="font-weight:bold; font-size:13px; margin-bottom: 5px;">' + title + '</div>' + '<div style="font-size:11px; margin-bottom: 2px;">[도로명] ' + feature.getProperties().addr + '</div><div style="font-size:11px; margin-bottom: 15px;">[주소] ' + feature.getProperties().jibun + '</div>';
 
-                $('#popup-content').html('<div style="font-weight:bold; font-size:13px; margin-bottom: 5px;">' + title + '</div>' + '<div style="font-size:11px; margin-bottom: 2px;">[도로명] ' + feature.getProperties().addr + '</div><div style="font-size:11px;">[주소] ' + feature.getProperties().jibun + '</div>');
+
+                var coord = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
+                html += '<div><div onclick="_Atm.goTmap(\'' + coord[0] + '\',\'' + coord[1] + '\',\'' + feature.getProperties().name[0] + '\');" style="background: #dc3d3d; font-size: 13px; color: #000; font-weight: bold; padding: 5px 10px; cursor: pointer; width: 140px;">T map 길안내 바로가기</div></div>';
+                $('#popup-content').html(html);
 
                 overlay.setPosition(feature.getGeometry().getCoordinates());
             });
@@ -1368,6 +1372,11 @@ var _Atm = (function () {
                     $(this).attr('value', ui.item.idx);
                 }
             });
+        },
+        goTmap: function (x, y, title) {
+
+            location.href = 'https://apis.openapi.sk.com/tmap/app/routes?appKey=l7xx0a5aae2bd3034b34ab91091954ac2796&name=' + title + '&lon=' + x + '&lat=' + y;
+
         }
     };
 })();
