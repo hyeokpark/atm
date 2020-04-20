@@ -917,7 +917,7 @@ var _Atm = (function () {
         { name: ['김포고창마을점M'], addr: '경기도 김포시 김포한강3로237번길 16', x: '926237.5501035277', y: '1960224.307077529', jibun: '경기도 김포시 장기동 1748' },
         { name: ['한강메디프라자점M'], addr: '경기도 김포시 김포한강4로 521', x: '922906.2764061722', y: '1961065.6889025443', jibun: '경기도 김포시 구래동 6880-5 한강메디플라자' },
         { name: ['김포한강로점G'], addr: '경기도 김포시 김포한강4로212번길 119', x: '925973.9445526195', y: '1961590.8547429638', jibun: '경기도 김포시 장기동 1872-8' },
-        { name: ['한강유보라점G'], addr: '경기도 김포시 김포한강8로 173-28', x: '924300.5919626001', y: '1960142.8867937797', jibun: '경기도 김포시 마산동 640-5 한강신도시 반도유보라 3차' },
+        { name: ['한강유보라점G', '은여울마을G'], addr: '경기도 김포시 김포한강8로 173-28', x: '924300.5919626001', y: '1960142.8867937797', jibun: '경기도 김포시 마산동 640-5 한강신도시 반도유보라 3차' },
         { name: ['김포프라자점G'], addr: '경기도 김포시 사우중로73번길 38', x: '931228.3553715148', y: '1958406.5254773223', jibun: '경기도 김포시 북변동 819 김포프라자' },
         { name: ['작전드림점M'], addr: '인천광역시 계양구 아나지로248번길 1', x: '931039.3388073477', y: '1947608.5204498083', jibun: '인천광역시 계양구 작전동 476-3 비케이디센트' },
         { name: ['부평대동점G'], addr: '인천광역시 부평구 주부토로 201', x: '931380.1828864878', y: '1944368.9153181026', jibun: '인천광역시 부평구 부평동 205-2 엡스 201' },
@@ -944,7 +944,12 @@ var _Atm = (function () {
         { name: ['양곡휴먼시아M'], addr: '경기도 김포시 김포한강8로 331', x: '923480.0594652039', y: '1960785.7011038312', jibun: '경기도 김포시 마산동 615-1 김포한강엘에이치솔터마을2단지' },
         { name: ['계산본M'], addr: '인천광역시 계양구 계양대로205번길 23', x: '931242.6667199195', y: '1949335.8235672228', jibun: '인천광역시 계양구 계산동 942-30' },
         { name: ['임학역G'], addr: '인천광역시 계양구 장제로 865', x: '932677.7654014032', y: '1949740.2583651664', jibun: '인천광역시 계양구 임학동 67-13' },
-        { name: ['한마음병원G'], addr: '인천광역시 계양구 효서로229번길 4', x: '931222.5520001566', y: '1947953.47741423', jibun: '인천광역시 계양구 작전동 865-21' }
+        { name: ['한마음병원G'], addr: '인천광역시 계양구 효서로229번길 4', x: '931222.5520001566', y: '1947953.47741423', jibun: '인천광역시 계양구 작전동 865-21' },
+        { name: ['양곡휴먼시아G'], addr: '경기도 김포시 양촌읍 양곡1로 68', x: '922715.0957985735', y: '1962274.9044400766', jibun: '경기도 김포시 양촌읍 양곡리 1547 휴먼시아1단지아파트' },
+        { name: ['미래도엘가'], addr: '경기도 김포시 김포한강2로 273', x: '926148.6027800161', y: '1961390.3841682589', jibun: '경기도 김포시 장기동 1869-5 청송마을 모아미래도엘가' },
+        { name: ['김포신도시SC'], addr: '경기도 김포시 청송로 26', x: '926489.4206441068', y: '1961245.6456053737', jibun: '경기도 김포시 장기동 1324 청송현대쇼핑센타' },
+        { name: ['호반베르디움'], addr: '경기도 김포시 김포한강2로 229', x: '925910.5944116693', y: '1960983.8492021384', jibun: '경기도 김포시 장기동 1885-6 한강호반베르디움' },
+        { name: ['한강솔터'], addr: '경기도 김포시 김포한강8로 365', x: '923102.7358696368', y: '1960788.5130727468', jibun: '경기도 김포시 구래동 6888-4 구래역화성파크드림' }
     ];
 
     var resultArr = [];
@@ -983,7 +988,7 @@ var _Atm = (function () {
         var arr = [];
         for (var i = 0; i < dataArr.length; i++) {
             for (var j = 0; j < dataArr[i].name.length; j++) {
-                arr.push(dataArr[i].name[j]);
+                arr.push({ value: dataArr[i].name[j], idx: i });
             }
         }
         arr.sort();
@@ -997,7 +1002,10 @@ var _Atm = (function () {
         $('#searchName').html(html);
 
         $('#searchText').autocomplete({
-            source: arr
+            source: arr,
+            select: function (event, ui) {
+                $(this).attr('value', ui.item.idx);
+            }
         });
     };
 
@@ -1269,17 +1277,20 @@ var _Atm = (function () {
                 }
             }
         } else {
-            var text = '';
-            for (var i = 0; i < resultArr.length; i++) {
-                for (var j = 0; j < $('.selectBox').length; j++) {
-                    if ($($('.selectBox')[j]).attr('value') == resultArr[i]) {
-                        if (text.indexOf($($('.selectBox')[j]).val()) == -1) {
-                            text += (i + 1) + '. ' + $($('.selectBox')[j]).val() + '\n';
-                        }
-                    }
-                }
-            }
-            alert(text);
+            writeLine(resultArr);
+            //여기임
+
+            // var text = '';
+            // for (var i = 0; i < resultArr.length; i++) {
+            //     for (var j = 0; j < $('.selectBox').length; j++) {
+            //         if ($($('.selectBox')[j]).attr('value') == resultArr[i]) {
+            //             if (text.indexOf($($('.selectBox')[j]).val()) == -1) {
+            //                 text += (i + 1) + '. ' + $($('.selectBox')[j]).val() + '\n';
+            //             }
+            //         }
+            //     }
+            // }
+            // alert(text);
         }
     };
 
@@ -1316,6 +1327,14 @@ var _Atm = (function () {
 
     return {
         init: function () {
+            searchTextArr = [];
+            for (var i = 0; i < dataArr.length; i++) {
+                for (var j = 0; j < dataArr[i].name.length; j++) {
+                    searchTextArr.push({ value: dataArr[i].name[j], idx: i });
+                }
+            }
+            searchTextArr.sort();
+
             createMap('mapDiv');
             Kakao.init('de26aa8bf86f397bb78cd6e6053439b2');
             setList();
@@ -1337,6 +1356,26 @@ var _Atm = (function () {
             btnCnt++
             $(me).hide();
             $('#mother').append('<br/><br/><input id="select' + btnCnt + '" class="selectBox" type="text"><input type="button" onclick="_Atm.setButton(this);" value="지점추가" class="plus" />');
+
+            $('#select' + btnCnt).autocomplete({
+                source: searchTextArr,
+                select: function (event, ui) {
+                    $(this).attr('value', ui.item.idx);
+                }
+            });
+
+        },
+
+        setButtonNew: function (me) {
+            btnCnt++
+            $(me).hide();
+
+            if (btnCnt > 1) {
+                $('#result' + (btnCnt - 1)).hide();
+            }
+
+            var html = '<br/><input id="select' + btnCnt + '" class="selectBox" type="text"><a id="plus" onclick="_Atm.setButtonNew(this);" style="font-size: 12px; background: #9697bd; padding: 6px 10px; cursor: pointer; margin-left: 5px; padding-top: 5px; padding-bottom: 7px; color: #000;">추가</a><a onclick="_Atm.getRouteResult(this);" id="result' + btnCnt + '">결과보기</a>';
+            $('#searchDiv').append(html);
 
             $('#select' + btnCnt).autocomplete({
                 source: searchTextArr,
@@ -1377,6 +1416,18 @@ var _Atm = (function () {
 
             location.href = 'https://apis.openapi.sk.com/tmap/app/routes?appKey=l7xx0a5aae2bd3034b34ab91091954ac2796&name=' + title + '&lon=' + x + '&lat=' + y;
 
+        },
+        getRouteResult: function () {
+            var selectBox = $('.selectBox');
+            var arr = [];
+            for (var i = 0; i < selectBox.length; i++) {
+                if ($(selectBox[i]).attr('value') != 'none') {
+                    if (arr.indexOf($(selectBox[i]).attr('value')) == -1) {
+                        arr.push($(selectBox[i]).attr('value'));
+                    }
+                }
+            }
+            _Atm.initSearch(arr);
         }
     };
 })();

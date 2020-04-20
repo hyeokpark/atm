@@ -59,10 +59,10 @@
             position: absolute;
             z-index: 10;
             left: 10px;
-            top: 45px;
+            top: 10px;
         }
 
-        #searchText {
+        .selectBox {
             padding: 5px 10px;
         }
 
@@ -70,8 +70,11 @@
             background: #595959;
             font-size: 13px;
             color: white;
-            padding: 5px 10px;
+            padding: 6px 10px;
             cursor: pointer;
+            margin-left: -6px;
+            padding-top: 5px;
+            padding-bottom: 7px;
         }
 
         .ui-widget {
@@ -138,16 +141,17 @@
         <!-- <div style="position: absolute; right: 10px; z-index: 2; bottom: 10px; color: #fff; font-weight: bold; background: #595959; padding: 5px;">
             <input type="checkbox" id="routeSearch">길찾기 모드
         </div> -->
-        <select id="searchName">
-        </select>
+        <!-- <select id="searchName">
+        </select> -->
         <div id="cntText"
             style="position: absolute; left: 10px; bottom: 10px; z-index: 10; font-weight: bold; color: blue;">
         </div>
-        <div id="addr"></div>
 
         <div id="searchDiv">
-            <input type="text" id="searchText">
+            <input type="text" id="searchText" class="selectBox">
             <a id="searchBtn">이동</a>
+            <!-- <a id="plus" onclick="_Atm.setButtonNew(this);"
+                style="font-size: 12px; background: #9697bd; padding: 6px 10px; cursor: pointer; margin-left: 5px; padding-top: 5px; padding-bottom: 7px; color: #000;">추가</a> -->
         </div>
 
         <div id="popup" class="ol-popup">
