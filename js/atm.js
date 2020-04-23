@@ -1056,6 +1056,63 @@ var _Atm = (function () {
         });
 
         writeLayer();
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var coord = transformPoint3857(position.coords.longitude, position.coords.latitude);
+            map.getView().setCenter(coord);
+            map.getView().setZoom(15);
+
+            var feature = new ol.Feature();
+            feature.setGeometry(new ol.geom.Point(coord));
+
+
+            source = new ol.source.Vector({
+                features: [feature]
+            });
+
+            var vectorLayer = new ol.layer.Vector({
+                source: source,
+                id: 'locationLayer',
+                zIndex: 2,
+                visible: true,
+                style: function (feature) {
+
+                    var st = new ol.style.Style({
+                        geometry: feature.getGeometry(),
+                        image: new ol.style.RegularShape({
+                            points: 6,
+                            scale: 1,
+                            radius: 35,
+                            radius2: 25,
+                            fill: new ol.style.Fill({
+                                color: '#6395af'
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: '#000',
+                                width: 5
+                            })
+                        }),
+                        text: new ol.style.Text({
+                            text: '현위치',
+                            fill: new ol.style.Fill({
+                                color: '#fff'
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: '#000',
+                                width: 7
+                            }),
+                            offsetY: 1,
+                            font: 'bold 13px Malgun Gothic'
+                        })
+                    });
+
+
+                    return [st];
+                }
+            });
+
+            map.addLayer(vectorLayer);
+        })
     };
 
     var createVWorldMapLayer = function (options) {
@@ -1077,6 +1134,16 @@ var _Atm = (function () {
         proj4.defs('EPSG:5179', '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs');
 
         var ep1 = new proj4.Proj('EPSG:5179');
+        var ep2 = new proj4.Proj('EPSG:3857');
+        var p = new proj4.Point(parseFloat(x), parseFloat(y));
+        var trans = proj4.transform(ep1, ep2, p);
+
+        return [trans.x, trans.y];
+    };
+
+    var transformPoint3857 = function (x, y) {
+
+        var ep1 = new proj4.Proj('EPSG:4326');
         var ep2 = new proj4.Proj('EPSG:3857');
         var p = new proj4.Point(parseFloat(x), parseFloat(y));
         var trans = proj4.transform(ep1, ep2, p);
@@ -1215,7 +1282,7 @@ var _Atm = (function () {
 
                         style.push(st);
                     }
-                }else{
+                } else {
                     st = new ol.style.Style({
                         geometry: feature.getGeometry()
                     });
@@ -1224,108 +1291,6 @@ var _Atm = (function () {
                 return style;
             }
         });
-
-        // var vectorLayer = new ol.layer.Vector({
-        //     source: source,
-        //     id: 'atmLayer',
-        //     zIndex: 2,
-        //     visible: true,
-        //     style: function (feature) {
-        //         var prop = feature.getProperties();
-        //         var style = [];
-        //         for (var i = 0; i < prop.name.length; i++) {
-        //             //prop.name[i];
-        //             var st;
-        //             var color = null;
-
-        //             //var styleObj = feature.getProperties().addr.indexOf('남동구');
-
-        //             var styleObj = {
-        //                 '남동구': 'red',
-        //                 '연수구': 'blue',
-        //                 '미추홀구': 'green',
-        //                 '서구': 'yellow',
-        //                 '시흥시': 'darkorange',
-        //                 '중구': 'chartreuse',
-
-        //                 '부천시': '#00abff',
-        //                 '계양구': '#ff008b',
-        //                 '부평구': 'brown',
-        //                 '김포시': '#00ff97',
-        //             };
-
-        //             for (key in styleObj) {
-        //                 if (feature.getProperties().addr.indexOf(key) > -1) {
-        //                     if (key == '연수구') {
-        //                         feature.getProperties().jibun.indexOf('송도동') > -1 ? color = 'fuchsia' : color = styleObj[key];
-        //                     } else {
-        //                         color = styleObj[key];
-        //                     }
-        //                 }
-        //             }
-
-        //             color ? color : color = 'springgreen';
-        //             if (map.getView().getZoom() > 13) {
-        //                 if (i == 0) {
-        //                     st = new ol.style.Style({
-        //                         geometry: feature.getGeometry(),
-        //                         image: new ol.style.Circle({
-        //                             radius: 6,
-        //                             fill: new ol.style.Fill({
-        //                                 color: color
-        //                             }),
-        //                             stroke: new ol.style.Stroke({
-        //                                 color: '#000',
-        //                                 width: 3
-        //                             })
-        //                         }),
-        //                         text: new ol.style.Text({
-        //                             text: ' ' + prop.name[i] + ' ',
-        //                             fill: new ol.style.Fill({
-        //                                 color: '#fff'
-        //                             }),
-        //                             offsetY: 20,
-        //                             font: 'bold 12px Malgun Gothic',
-        //                             backgroundFill: new ol.style.Fill({ color: '#000' })
-        //                         })
-        //                     });
-        //                 } else {
-        //                     st = new ol.style.Style({
-        //                         geometry: feature.getGeometry(),
-        //                         text: new ol.style.Text({
-        //                             text: ' ' + prop.name[i] + ' ',
-        //                             fill: new ol.style.Fill({
-        //                                 color: '#fff'
-        //                             }),
-        //                             offsetY: 35,
-        //                             font: 'bold 12px Malgun Gothic',
-        //                             backgroundFill: new ol.style.Fill({ color: '#000' })
-        //                         })
-        //                     });
-        //                 }
-        //             } else {
-        //                 st = new ol.style.Style({
-        //                     geometry: feature.getGeometry(),
-        //                     image: new ol.style.Circle({
-        //                         radius: 6,
-        //                         fill: new ol.style.Fill({
-        //                             color: color
-        //                         }),
-        //                         stroke: new ol.style.Stroke({
-        //                             color: '#000',
-        //                             width: 3
-        //                         })
-        //                     })
-        //                 });
-        //             }
-
-
-        //             style.push(st);
-        //         }
-
-        //         return style;
-        //     }
-        // });
 
         map.addLayer(vectorLayer);
         map.addLayer(textLayer);
