@@ -1014,7 +1014,7 @@ var _Atm = (function () {
         $('#searchText').autocomplete({
             source: arr,
             select: function (event, ui) {
-                $(this).attr('value', ui.item.idx);
+                searchName(ui.item.value);
             }
         });
     };
@@ -1079,17 +1079,14 @@ var _Atm = (function () {
 
                     var st = new ol.style.Style({
                         geometry: feature.getGeometry(),
-                        image: new ol.style.RegularShape({
-                            points: 6,
-                            scale: 1,
-                            radius: 35,
-                            radius2: 25,
+                        image: new ol.style.Circle({
+                            radius: 25,
                             fill: new ol.style.Fill({
                                 color: '#6395af'
                             }),
                             stroke: new ol.style.Stroke({
                                 color: '#000',
-                                width: 5
+                                width: 3
                             })
                         }),
                         text: new ol.style.Text({
@@ -1102,7 +1099,7 @@ var _Atm = (function () {
                                 width: 7
                             }),
                             offsetY: 1,
-                            font: 'bold 13px Malgun Gothic'
+                            font: 'bold 12px Malgun Gothic'
                         })
                     });
 
