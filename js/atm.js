@@ -1360,9 +1360,12 @@ var _Atm = (function () {
         map.on('singleclick', function (evt) {
             $('#popup').hide();
             map.forEachFeatureAtPixel(evt.pixel, function (feature, layer) {
+
+                if (layer.getProperties().id != 'textLayer' && layer.getProperties().id != 'atmLayer') {
+                    return;
+                }
+
                 $('#popup').show();
-
-
 
                 var title = '';
                 for (var i = 0; i < feature.getProperties().name.length; i++) {
