@@ -1150,7 +1150,7 @@ var _Atm = (function () {
                     st = new ol.style.Style({
                         geometry: feature.getGeometry(),
                         image: new ol.style.Circle({
-                            radius: 8,
+                            radius: 6,
                             fill: new ol.style.Fill({
                                 color: color
                             }),
