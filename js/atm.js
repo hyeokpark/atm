@@ -1120,11 +1120,8 @@ var _Atm = (function () {
                 var prop = feature.getProperties();
                 var style = [];
                 for (var i = 0; i < prop.name.length; i++) {
-                    //prop.name[i];
                     var st;
                     var color = null;
-
-                    //var styleObj = feature.getProperties().addr.indexOf('남동구');
 
                     var styleObj = {
                         '남동구': 'red',
@@ -1133,11 +1130,10 @@ var _Atm = (function () {
                         '서구': 'yellow',
                         '시흥시': 'darkorange',
                         '중구': 'chartreuse',
-
                         '부천시': '#00abff',
                         '계양구': '#ff008b',
                         '부평구': 'brown',
-                        '김포시': '#00ff97',
+                        '김포시': '#00ff97'
                     };
 
                     for (key in styleObj) {
@@ -1151,28 +1147,52 @@ var _Atm = (function () {
                     }
 
                     color ? color : color = 'springgreen';
-                    if (map.getView().getZoom() > 13) {
+                    st = new ol.style.Style({
+                        geometry: feature.getGeometry(),
+                        image: new ol.style.Circle({
+                            radius: 8,
+                            fill: new ol.style.Fill({
+                                color: color
+                            }),
+                            stroke: new ol.style.Stroke({
+                                color: '#000',
+                                width: 3
+                            })
+                        })
+                    });
+
+                    style.push(st);
+                }
+
+                return style;
+            }
+        });
+
+        var textLayer = new ol.layer.Vector({
+            source: source,
+            id: 'textLayer',
+            zIndex: 2,
+            visible: true,
+            declutter: true,
+            style: function (feature) {
+                var prop = feature.getProperties();
+                var style = [];
+                if (map.getView().getZoom() > 13) {
+                    for (var i = 0; i < prop.name.length; i++) {
                         if (i == 0) {
                             st = new ol.style.Style({
                                 geometry: feature.getGeometry(),
-                                image: new ol.style.Circle({
-                                    radius: 6,
-                                    fill: new ol.style.Fill({
-                                        color: color
-                                    }),
-                                    stroke: new ol.style.Stroke({
-                                        color: '#000',
-                                        width: 3
-                                    })
-                                }),
                                 text: new ol.style.Text({
                                     text: ' ' + prop.name[i] + ' ',
                                     fill: new ol.style.Fill({
                                         color: '#fff'
                                     }),
-                                    offsetY: 20,
-                                    font: 'bold 12px Malgun Gothic',
-                                    backgroundFill: new ol.style.Fill({ color: '#000' })
+                                    offsetY: 22,
+                                    stroke: new ol.style.Stroke({
+                                        color: '#000',
+                                        width: 7
+                                    }),
+                                    font: 'bold 13px Malgun Gothic'
                                 })
                             });
                         } else {
@@ -1183,37 +1203,132 @@ var _Atm = (function () {
                                     fill: new ol.style.Fill({
                                         color: '#fff'
                                     }),
-                                    offsetY: 35,
-                                    font: 'bold 12px Malgun Gothic',
-                                    backgroundFill: new ol.style.Fill({ color: '#000' })
+                                    offsetY: 47,
+                                    stroke: new ol.style.Stroke({
+                                        color: '#000',
+                                        width: 7
+                                    }),
+                                    font: 'bold 13px Malgun Gothic'
                                 })
                             });
                         }
-                    } else {
-                        st = new ol.style.Style({
-                            geometry: feature.getGeometry(),
-                            image: new ol.style.Circle({
-                                radius: 6,
-                                fill: new ol.style.Fill({
-                                    color: color
-                                }),
-                                stroke: new ol.style.Stroke({
-                                    color: '#000',
-                                    width: 3
-                                })
-                            })
-                        });
+
+                        style.push(st);
                     }
-
-
+                }else{
+                    st = new ol.style.Style({
+                        geometry: feature.getGeometry()
+                    });
                     style.push(st);
                 }
-
                 return style;
             }
         });
 
+        // var vectorLayer = new ol.layer.Vector({
+        //     source: source,
+        //     id: 'atmLayer',
+        //     zIndex: 2,
+        //     visible: true,
+        //     style: function (feature) {
+        //         var prop = feature.getProperties();
+        //         var style = [];
+        //         for (var i = 0; i < prop.name.length; i++) {
+        //             //prop.name[i];
+        //             var st;
+        //             var color = null;
+
+        //             //var styleObj = feature.getProperties().addr.indexOf('남동구');
+
+        //             var styleObj = {
+        //                 '남동구': 'red',
+        //                 '연수구': 'blue',
+        //                 '미추홀구': 'green',
+        //                 '서구': 'yellow',
+        //                 '시흥시': 'darkorange',
+        //                 '중구': 'chartreuse',
+
+        //                 '부천시': '#00abff',
+        //                 '계양구': '#ff008b',
+        //                 '부평구': 'brown',
+        //                 '김포시': '#00ff97',
+        //             };
+
+        //             for (key in styleObj) {
+        //                 if (feature.getProperties().addr.indexOf(key) > -1) {
+        //                     if (key == '연수구') {
+        //                         feature.getProperties().jibun.indexOf('송도동') > -1 ? color = 'fuchsia' : color = styleObj[key];
+        //                     } else {
+        //                         color = styleObj[key];
+        //                     }
+        //                 }
+        //             }
+
+        //             color ? color : color = 'springgreen';
+        //             if (map.getView().getZoom() > 13) {
+        //                 if (i == 0) {
+        //                     st = new ol.style.Style({
+        //                         geometry: feature.getGeometry(),
+        //                         image: new ol.style.Circle({
+        //                             radius: 6,
+        //                             fill: new ol.style.Fill({
+        //                                 color: color
+        //                             }),
+        //                             stroke: new ol.style.Stroke({
+        //                                 color: '#000',
+        //                                 width: 3
+        //                             })
+        //                         }),
+        //                         text: new ol.style.Text({
+        //                             text: ' ' + prop.name[i] + ' ',
+        //                             fill: new ol.style.Fill({
+        //                                 color: '#fff'
+        //                             }),
+        //                             offsetY: 20,
+        //                             font: 'bold 12px Malgun Gothic',
+        //                             backgroundFill: new ol.style.Fill({ color: '#000' })
+        //                         })
+        //                     });
+        //                 } else {
+        //                     st = new ol.style.Style({
+        //                         geometry: feature.getGeometry(),
+        //                         text: new ol.style.Text({
+        //                             text: ' ' + prop.name[i] + ' ',
+        //                             fill: new ol.style.Fill({
+        //                                 color: '#fff'
+        //                             }),
+        //                             offsetY: 35,
+        //                             font: 'bold 12px Malgun Gothic',
+        //                             backgroundFill: new ol.style.Fill({ color: '#000' })
+        //                         })
+        //                     });
+        //                 }
+        //             } else {
+        //                 st = new ol.style.Style({
+        //                     geometry: feature.getGeometry(),
+        //                     image: new ol.style.Circle({
+        //                         radius: 6,
+        //                         fill: new ol.style.Fill({
+        //                             color: color
+        //                         }),
+        //                         stroke: new ol.style.Stroke({
+        //                             color: '#000',
+        //                             width: 3
+        //                         })
+        //                     })
+        //                 });
+        //             }
+
+
+        //             style.push(st);
+        //         }
+
+        //         return style;
+        //     }
+        // });
+
         map.addLayer(vectorLayer);
+        map.addLayer(textLayer);
     };
 
     var setEvent = function () {
