@@ -970,6 +970,8 @@ var _Atm = (function () {
 
     var overlay = null;
 
+    var searchLayer = null;
+
     var searchName = function (name) {
         var isIn = false;
         var result = null;
@@ -986,7 +988,46 @@ var _Atm = (function () {
             $('#searchText').val(name);
             $('#addr').html(result.jibun);
             $('#addr').show();
-            map.getView().setCenter(transformPoint(result.x, result.y));
+
+            var coord = transformPoint(result.x, result.y);
+            var feature = new ol.Feature();
+            feature.setGeometry(new ol.geom.Point(coord));
+
+            source = new ol.source.Vector({
+                features: [feature]
+            });
+
+            if (searchLayer) {
+                map.removeLayer(searchLayer);
+            }
+
+            searchLayer = new ol.layer.Vector({
+                source: source,
+                id: 'searchLayer',
+                zIndex: 1,
+                visible: true,
+                style: function (feature) {
+
+                    var st = new ol.style.Style({
+                        geometry: feature.getGeometry(),
+                        image: new ol.style.Circle({
+                            radius: 25,
+                            stroke: new ol.style.Stroke({
+                                color: '#000',
+                                width: 3
+                            }),
+                            fill: new ol.style.Fill({
+                                color: 'red'
+                            })
+                        })
+                    });
+
+                    return [st];
+                }
+            });
+
+            map.addLayer(searchLayer);
+            map.getView().setCenter(coord);
             map.getView().setZoom(16);
         } else {
             alert('검색된 결과에서 선택하세요.');
@@ -1057,59 +1098,61 @@ var _Atm = (function () {
 
         writeLayer();
 
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var coord = transformPoint3857(position.coords.longitude, position.coords.latitude);
-            map.getView().setCenter(coord);
-            map.getView().setZoom(15);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var coord = transformPoint3857(position.coords.longitude, position.coords.latitude);
+                map.getView().setCenter(coord);
+                map.getView().setZoom(15);
 
-            var feature = new ol.Feature();
-            feature.setGeometry(new ol.geom.Point(coord));
+                var feature = new ol.Feature();
+                feature.setGeometry(new ol.geom.Point(coord));
 
 
-            source = new ol.source.Vector({
-                features: [feature]
-            });
+                source = new ol.source.Vector({
+                    features: [feature]
+                });
 
-            var vectorLayer = new ol.layer.Vector({
-                source: source,
-                id: 'locationLayer',
-                zIndex: 2,
-                visible: true,
-                style: function (feature) {
+                var vectorLayer = new ol.layer.Vector({
+                    source: source,
+                    id: 'locationLayer',
+                    zIndex: 2,
+                    visible: true,
+                    style: function (feature) {
 
-                    var st = new ol.style.Style({
-                        geometry: feature.getGeometry(),
-                        image: new ol.style.Circle({
-                            radius: 25,
-                            fill: new ol.style.Fill({
-                                color: '#6395af'
+                        var st = new ol.style.Style({
+                            geometry: feature.getGeometry(),
+                            image: new ol.style.Circle({
+                                radius: 25,
+                                fill: new ol.style.Fill({
+                                    color: 'red'
+                                }),
+                                stroke: new ol.style.Stroke({
+                                    color: '#000',
+                                    width: 3
+                                })
                             }),
-                            stroke: new ol.style.Stroke({
-                                color: '#000',
-                                width: 3
+                            text: new ol.style.Text({
+                                text: '현위치',
+                                fill: new ol.style.Fill({
+                                    color: '#fff'
+                                }),
+                                stroke: new ol.style.Stroke({
+                                    color: '#000',
+                                    width: 7
+                                }),
+                                offsetY: 1,
+                                font: 'bold 12px Malgun Gothic'
                             })
-                        }),
-                        text: new ol.style.Text({
-                            text: '현위치',
-                            fill: new ol.style.Fill({
-                                color: '#fff'
-                            }),
-                            stroke: new ol.style.Stroke({
-                                color: '#000',
-                                width: 7
-                            }),
-                            offsetY: 1,
-                            font: 'bold 12px Malgun Gothic'
-                        })
-                    });
+                        });
 
 
-                    return [st];
-                }
-            });
+                        return [st];
+                    }
+                });
 
-            map.addLayer(vectorLayer);
-        })
+                map.addLayer(vectorLayer);
+            })
+        }
     };
 
     var createVWorldMapLayer = function (options) {
@@ -1188,7 +1231,7 @@ var _Atm = (function () {
                     var color = null;
 
                     var styleObj = {
-                        '남동구': 'red',
+                        '남동구': '#6395af',
                         '연수구': 'blue',
                         '미추홀구': 'green',
                         '서구': 'yellow',
