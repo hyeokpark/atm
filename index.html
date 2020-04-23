@@ -135,8 +135,7 @@
             content: "✖";
         }
 
-        input[type=text]
-        {
+        input[type=text] {
             padding: 12px 15px;
             margin: 8px 0;
             display: inline-block;
@@ -146,8 +145,16 @@
             width: 300px;
             font-size: 18px;
         }
-        .ui-autocomplete{
+
+        .ui-autocomplete {
             font-size: 18px !important;
+        }
+
+        .ol-zoom {
+            right: 10px !important;
+            bottom: 10px !important;
+            top: unset;
+            left: unset;
         }
     </style>
 
@@ -164,7 +171,7 @@
 
         <div id="searchDiv">
             <input type="text" id="searchText" class="selectBox" placeholder="검색어를 입력하세요.">
-            
+
             <!-- <a id="searchBtn">이동</a> -->
             <!-- <a id="plus" onclick="_Atm.setButtonNew(this);"
                 style="font-size: 12px; background: #9697bd; padding: 6px 10px; cursor: pointer; margin-left: 5px; padding-top: 5px; padding-bottom: 7px; color: #000;">추가</a> -->

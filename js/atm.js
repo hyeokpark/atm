@@ -1074,7 +1074,6 @@ var _Atm = (function () {
             controls: ol.control.defaults({
                 attribution: false,
                 rotate: false,
-                zoom: false,
                 forEachLayerAtPixel: true
             }).extend([new ol.interaction.DragRotate({
                 condition: function (e) {
