@@ -1296,9 +1296,9 @@ var _Atm = (function () {
                                     offsetY: 22,
                                     stroke: new ol.style.Stroke({
                                         color: '#000',
-                                        width: 7
+                                        width: 5
                                     }),
-                                    font: 'bold 13px Malgun Gothic'
+                                    font: 'bold 15px Malgun Gothic'
                                 })
                             });
                         } else {
@@ -1309,12 +1309,12 @@ var _Atm = (function () {
                                     fill: new ol.style.Fill({
                                         color: '#fff'
                                     }),
-                                    offsetY: 47,
+                                    offsetY: 48,
                                     stroke: new ol.style.Stroke({
                                         color: '#000',
-                                        width: 7
+                                        width: 5
                                     }),
-                                    font: 'bold 13px Malgun Gothic'
+                                    font: 'bold 15px Malgun Gothic'
                                 })
                             });
                         }
