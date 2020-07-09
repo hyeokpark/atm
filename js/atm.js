@@ -1,6 +1,7 @@
 var _Atm = (function () {
     var map = null;
     //var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png';
+    //var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1586523871/{z}/{x}/{y}.png';
     var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1592557809/{z}/{x}/{y}.png?mt=bg.ol.sw';
 
     var dataArr = [
