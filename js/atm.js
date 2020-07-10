@@ -1094,7 +1094,7 @@ var _Atm = (function () {
                     var st = new ol.style.Style({
                         geometry: feature.getGeometry(),
                         image: new ol.style.Circle({
-                            radius: 25,
+                            radius: 15,
                             stroke: new ol.style.Stroke({
                                 color: '#000',
                                 width: 3
@@ -1204,7 +1204,8 @@ var _Atm = (function () {
                         var st = new ol.style.Style({
                             geometry: feature.getGeometry(),
                             image: new ol.style.Circle({
-                                radius: 25,
+                                //radius: 25,
+                                radius: 8,
                                 fill: new ol.style.Fill({
                                     color: 'red'
                                 }),
@@ -1220,13 +1221,12 @@ var _Atm = (function () {
                                 }),
                                 stroke: new ol.style.Stroke({
                                     color: '#000',
-                                    width: 7
+                                    width: 5
                                 }),
-                                offsetY: 1,
+                                offsetY: 22,
                                 font: 'bold 12px Malgun Gothic'
                             })
                         });
-
 
                         return [st];
                     }
