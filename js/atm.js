@@ -1334,18 +1334,24 @@ var _Atm = (function () {
                             }
                         }
                     }
+                    var radius = 0;
 
-                    color ? color : color = 'springgreen';
+                    //color ? color : color = 'springgreen';
+                    //radius = 6;
+                    color = '#00d353';
+                    radius = 8;
                     st = new ol.style.Style({
                         geometry: feature.getGeometry(),
                         image: new ol.style.Circle({
-                            radius: 6,
+                            radius: radius,
                             fill: new ol.style.Fill({
                                 color: color
                             }),
                             stroke: new ol.style.Stroke({
+                                // color: '#000',
+                                // width: 3
                                 color: '#000',
-                                width: 3
+                                width: 1
                             })
                         })
                     });
@@ -1381,7 +1387,7 @@ var _Atm = (function () {
                                         color: '#000',
                                         width: 5
                                     }),
-                                    font: 'bold 15px Malgun Gothic'
+                                    font: 'bold 12px Malgun Gothic'
                                 })
                             });
                         } else {
@@ -1397,7 +1403,7 @@ var _Atm = (function () {
                                         color: '#000',
                                         width: 5
                                     }),
-                                    font: 'bold 15px Malgun Gothic'
+                                    font: 'bold 12px Malgun Gothic'
                                 })
                             });
                         }
