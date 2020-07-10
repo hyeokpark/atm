@@ -1339,7 +1339,7 @@ var _Atm = (function () {
                     //color ? color : color = 'springgreen';
                     //radius = 6;
                     color = '#00d353';
-                    radius = 8;
+                    radius = 6;
                     st = new ol.style.Style({
                         geometry: feature.getGeometry(),
                         image: new ol.style.Circle({
