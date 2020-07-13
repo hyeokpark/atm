@@ -1158,15 +1158,18 @@ var _Atm = (function () {
                 attribution: false,
                 rotate: true,
                 forEachLayerAtPixel: true
-            }),
-            interactions: new ol.interaction.defaults({ altShiftDragRotate: true, pinchRotate: true }),
+            }).extend([new ol.interaction.DragRotate({
+                condition: function (e) {
+                    return false;
+                }
+            })]),
             target: id,
             layers: [(createVWorldMapLayer({
                 isVisible: true
             }))],
             overlays: [overlay],
             view: new ol.View({
-                enableRotation: false,
+                enableRotation: true,
                 rotation: 0,
                 center: [14099330.817812243, 4500407.503618384],
                 minZoom: 7,
