@@ -1158,11 +1158,8 @@ var _Atm = (function () {
                 attribution: false,
                 rotate: true,
                 forEachLayerAtPixel: true
-            }).extend([new ol.interaction.DragRotate({
-                condition: function (e) {
-                    return true;
-                }
-            })]),
+            }),
+            interactions: new ol.interaction.defaults({ altShiftDragRotate: true, pinchRotate: true }),
             target: id,
             layers: [(createVWorldMapLayer({
                 isVisible: true
