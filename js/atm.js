@@ -1156,11 +1156,11 @@ var _Atm = (function () {
         map = new ol.Map({
             controls: ol.control.defaults({
                 attribution: false,
-                rotate: false,
+                rotate: true,
                 forEachLayerAtPixel: true
             }).extend([new ol.interaction.DragRotate({
                 condition: function (e) {
-                    return false;
+                    return true;
                 }
             })]),
             target: id,
@@ -1217,11 +1217,11 @@ var _Atm = (function () {
                             text: new ol.style.Text({
                                 text: '현위치',
                                 fill: new ol.style.Fill({
-                                    color: '#fff'
+                                    color: '#000'
                                 }),
                                 stroke: new ol.style.Stroke({
-                                    color: '#000',
-                                    width: 5
+                                    color: '#fff',
+                                    width: 1
                                 }),
                                 offsetY: 22,
                                 font: 'bold 12px Malgun Gothic'
@@ -1380,12 +1380,12 @@ var _Atm = (function () {
                                 text: new ol.style.Text({
                                     text: ' ' + prop.name[i] + ' ',
                                     fill: new ol.style.Fill({
-                                        color: '#fff'
+                                        color: '#000'
                                     }),
                                     offsetY: 22,
                                     stroke: new ol.style.Stroke({
-                                        color: '#000',
-                                        width: 5
+                                        color: '#fff',
+                                        width: 1
                                     }),
                                     font: 'bold 12px Malgun Gothic'
                                 })
@@ -1396,12 +1396,12 @@ var _Atm = (function () {
                                 text: new ol.style.Text({
                                     text: ' ' + prop.name[i] + ' ',
                                     fill: new ol.style.Fill({
-                                        color: '#fff'
+                                        color: '#000'
                                     }),
-                                    offsetY: 48,
+                                    offsetY: 40,
                                     stroke: new ol.style.Stroke({
-                                        color: '#000',
-                                        width: 5
+                                        color: '#fff',
+                                        width: 1
                                     }),
                                     font: 'bold 12px Malgun Gothic'
                                 })
