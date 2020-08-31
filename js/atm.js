@@ -1535,7 +1535,7 @@ var _Atm = (function () {
                 $('#popup-content').html(html);
 
                 overlay.setPosition(feature.getGeometry().getCoordinates());
-            });
+            }, { hitTolerance: 15 });
         });
     };
 
