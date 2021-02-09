@@ -2,7 +2,7 @@ var _Atm = (function () {
     var map = null;
     //var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png';
     //var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1586523871/{z}/{x}/{y}.png';
-    var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1611216989/{z}/{x}/{y}.png';
+    var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1612440822/{z}/{x}/{y}.png';
 
     var dataArr = [
         { name: ['(주)비에스이'], addr: '인천광역시 남동구 남동서로 193', x: '928448.838274891', y: '1934545.4152585235', jibun: '인천광역시 남동구 고잔동 626-3 (주)이츠웰' },
@@ -1394,7 +1394,8 @@ var _Atm = (function () {
         { name: ['인천송현G'], addr: '인천광역시 동구 화수로 8', x: '923620.1300659368', y: '1942724.7624929831', jibun: '인천광역시 동구 송현동 66-631' },
         { name: ['동구금곡G'], addr: '인천광역시 동구 금곡로 47', x: '924048.1186204767', y: '1941943.4942759234', jibun: '인천광역시 동구 금곡동 51-8' },
         { name: ['산곡월드G'], addr: '인천광역시 부평구 마장로272번길 54', x: '929834.99723128', y: '1945057.1282376335', jibun: '인천광역시 부평구 산곡동 391-2 예향스포츠센타' },
-        { name: ['케이엠엔아이연구소'], addr: '인천광역시 서구 백범로 924', x: '925448.7910880088', y: '1943522.2815162595', jibun: '인천광역시 서구 가좌동 178-161' }
+        { name: ['케이엠엔아이연구소'], addr: '인천광역시 서구 백범로 924', x: '925448.7910880088', y: '1943522.2815162595', jibun: '인천광역시 서구 가좌동 178-161' },
+        { name: ['가좌겸이G'], addr: '인천광역시 서구 가석로126번안길 21', x: '927181.4973683634', y: '1944347.8902310366', jibun: '인천광역시 서구 가좌동 206-75' }
     ];
 
     var resultArr = [];
