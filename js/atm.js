@@ -1979,7 +1979,7 @@ var _Atm = (function () {
                         style: new ol.style.Style({
                             stroke: new ol.style.Stroke({ color: 'red', width: 5 }),
                             text: new ol.style.Text({
-                                text: '총' + (distance > 1000 ? (distance / 1000) + 'km' : distance + 'm'),
+                                text: '총 ' + (distance > 1000 ? (distance / 1000) + 'km' : distance + 'm'),
                                 fill: new ol.style.Fill({
                                     color: '#000'
                                 }),
@@ -1988,7 +1988,7 @@ var _Atm = (function () {
                                     width: 1
                                 }),
                                 offsetY: 22,
-                                font: 'bold 12px Malgun Gothic'
+                                font: 'bold 17px Malgun Gothic'
                             })
                         })
                     });
