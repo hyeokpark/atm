@@ -1408,6 +1408,11 @@ var _Atm = (function () {
 
     var searchLayer = null;
 
+    var routeParam = [];
+    var preCoord = {};
+
+    var tmapVectorLineLayer = null;
+
     var searchName = function (name) {
         var isIn = false;
         var result = null;
@@ -1541,6 +1546,8 @@ var _Atm = (function () {
 
                 var feature = new ol.Feature();
                 feature.setGeometry(new ol.geom.Point(coord));
+
+                preCoord = { coordX: position.coords.longitude, coordY: position.coords.latitude };
 
 
                 source = new ol.source.Vector({
@@ -1816,7 +1823,11 @@ var _Atm = (function () {
 
 
                 var coord = transformPointForWgs(feature.getProperties().x, feature.getProperties().y);
-                html += '<div><div onclick="_Atm.goTmap(\'' + coord[0] + '\',\'' + coord[1] + '\',\'' + feature.getProperties().name[0] + '\');" style="background: #dc3d3d; font-size: 13px; color: #000; font-weight: bold; padding: 5px 10px; cursor: pointer; width: 140px;">T map 길안내 바로가기</div></div>';
+                html += '<div>';
+                html += '   <div onclick="_Atm.goTmap(\'' + coord[0] + '\',\'' + coord[1] + '\',\'' + feature.getProperties().name[0] + '\');" style="background: #dc3d3d; font-size: 13px; color: #000; font-weight: bold; padding: 5px 10px; cursor: pointer; width: 140px;">T map 길안내 바로가기</div>';
+                html += '   <div style="margin-top: 10px;"><span class="route_btn" style="background: #76f74e;" onclick="_Atm.goRoute(\'' + coord[0] + '\',\'' + coord[1] + '\',\'' + feature.getProperties().name[0] + '\',\'start\')")";>출발지</span>';
+                html += '<span class="route_btn" onclick="_Atm.goRoute(\'' + coord[0] + '\',\'' + coord[1] + '\',\'' + feature.getProperties().name[0] + '\',\'end\')";>도착지</span><div>';
+                html += '</div>';
                 $('#popup-content').html(html);
 
                 overlay.setPosition(feature.getGeometry().getCoordinates());
@@ -1899,6 +1910,94 @@ var _Atm = (function () {
         map.addLayer(vectorLineLayer);
     };
 
+    var goRoute = function (coordX, coordY, name, flag) {
+        $('#popup').hide();
+        if (flag == 'end') {
+            if (routeParam.length == 0) {
+                var endConfirm = confirm('출발지가 선택되지 않았습니다. 현재위치로 길안내 하시겠습니까?');
+                if (endConfirm) {
+                    routeParam.push({ coordX: preCoord.coordX, coordY: preCoord.coordY, name: '현위치' });
+                    routeParam.push({ coordX: coordX, coordY: coordY, name: name });
+                    getRouteResultForTmap();
+                }
+            } else {
+                routeParam.push({ coordX: coordX, coordY: coordY, name: name });
+                getRouteResultForTmap();
+            }
+        } else {
+            alert('출발지가 선택되었습니다.');
+            if (routeParam.length > 1) {
+                routeParam[0] = { coordX: coordX, coordY: coordY, name: name };
+            } else {
+                routeParam.push({ coordX: coordX, coordY: coordY, name: name });
+            }
+        }
+    };
+
+    var getRouteResultForTmap = function () {
+        $.ajax({
+            type: "POST",
+            url: "https://apis.openapi.sk.com/tmap/routes?version=1&format=json&callback=result",
+            async: true,
+            data: {
+                "appKey": "l7xx0a5aae2bd3034b34ab91091954ac2796",
+                "startX": routeParam[0].coordX,
+                "startY": routeParam[0].coordY,
+                "endX": routeParam[1].coordX,
+                "endY": routeParam[1].coordY,
+                "reqCoordType": "WGS84GEO",
+                "resCoordType": "EPSG3857",
+                "searchOption": "0",
+                "trafficInfo": "Y"
+            },
+            success: function (response) {
+                if (tmapVectorLineLayer) {
+                    map.removeLayer(tmapVectorLineLayer);
+                }
+                routeParam = [];
+                if (response.features.length > 0) {
+                    var distance = response.features[0].properties.totalDistance;
+
+                    var vectorLine = new ol.source.Vector({});
+                    var lineArr = [];
+                    for (var i = 0; i < response.features.length; i++) {
+                        if (response.features[i].geometry.type == "LineString") {
+                            for (var j = 0; j < response.features[i].geometry.coordinates.length; j++) {
+                                lineArr.push(response.features[i].geometry.coordinates[j]);
+                            }
+                        }
+                    }
+
+                    var featureLine = new ol.Feature({
+                        geometry: new ol.geom.LineString(lineArr)
+                    });
+
+                    vectorLine.addFeature(featureLine);
+
+                    tmapVectorLineLayer = new ol.layer.Vector({
+                        source: vectorLine,
+                        style: new ol.style.Style({
+                            stroke: new ol.style.Stroke({ color: 'red', width: 5 }),
+                            text: new ol.style.Text({
+                                text: '총' + (distance > 1000 ? (distance / 1000) + 'km' : distance + 'm'),
+                                fill: new ol.style.Fill({
+                                    color: '#000'
+                                }),
+                                stroke: new ol.style.Stroke({
+                                    color: '#fff',
+                                    width: 1
+                                }),
+                                offsetY: 22,
+                                font: 'bold 12px Malgun Gothic'
+                            })
+                        })
+                    });
+
+                    map.addLayer(tmapVectorLineLayer);
+                }
+            }
+        });
+    };
     return {
         init: function () {
             searchTextArr = [];
@@ -2002,6 +2101,9 @@ var _Atm = (function () {
                 }
             }
             _Atm.initSearch(arr);
+        },
+        goRoute: function (coordX, coordY, name, flag) {
+            goRoute(coordX, coordY, name, flag);
         }
     };
 })();
