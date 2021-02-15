@@ -1617,8 +1617,9 @@ var _Atm = (function () {
 
         var ep1 = new proj4.Proj('EPSG:5179');
         var ep2 = new proj4.Proj('EPSG:3857');
-        var p = new proj4.Point(parseFloat(x), parseFloat(y));
-        var trans = proj4.transform(ep1, ep2, p);
+        //var p = new proj4.Point(parseFloat(x), parseFloat(y));
+
+        var trans = proj4.transform(ep1, ep2, { x: parseFloat(x), y: parseFloat(y) });
 
         return [trans.x, trans.y];
     };
@@ -1627,8 +1628,8 @@ var _Atm = (function () {
 
         var ep1 = new proj4.Proj('EPSG:4326');
         var ep2 = new proj4.Proj('EPSG:3857');
-        var p = new proj4.Point(parseFloat(x), parseFloat(y));
-        var trans = proj4.transform(ep1, ep2, p);
+        //var p = new proj4.Point(parseFloat(x), parseFloat(y));
+        var trans = proj4.transform(ep1, ep2, { x: parseFloat(x), y: parseFloat(y) });
 
         return [trans.x, trans.y];
     };
