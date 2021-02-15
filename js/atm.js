@@ -1927,7 +1927,7 @@ var _Atm = (function () {
             }
         } else {
             alert('출발지가 선택되었습니다.');
-            if (routeParam.length > 1) {
+            if (routeParam.length > 0) {
                 routeParam[0] = { coordX: coordX, coordY: coordY, name: name };
             } else {
                 routeParam.push({ coordX: coordX, coordY: coordY, name: name });
