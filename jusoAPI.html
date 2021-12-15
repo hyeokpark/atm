@@ -124,6 +124,12 @@
 
                                             $('#resultCoordX').append(strX + '\n');
                                             $('#resultCoordY').append(strY + '\n');
+
+                                            var a = $('#resultJuso').val();
+                                            var splitArr = [];
+                                            a.split('\n').forEach(function (d, idx) { splitArr.push({ name: [''], addr: $('#searchText').val().split(',')[idx], x: $('#resultCoordX').val().split('\n')[idx], y: $('#resultCoordY').val().split('\n')[idx], jibun: $('#resultJuso').val().split('\n')[idx] }) });
+
+                                            console.log(JSON.stringify(splitArr));
                                         }
                                     });
                                 } else {
