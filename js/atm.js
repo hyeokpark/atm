@@ -3,7 +3,7 @@ var _Atm = (function () {
   //var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png';
   //var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1586523871/{z}/{x}/{y}.png';
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1647590695/{z}/{x}/{y}.png";
+    "https://map.pstatic.net/nrb/styles/basic/1648113111/{z}/{x}/{y}.png";
 
   var dataArr = [
     {
@@ -5336,7 +5336,7 @@ var _Atm = (function () {
       jibun: "인천광역시 부평구 부평동 155-38",
     },
     {
-      name: ["보스나이트-부평"],
+      name: ["보스나이트-부평", "응답하라G"],
       addr: "인천광역시 부평구 경원대로1403번길 33",
       x: "931551.8100625135",
       y: "1944008.6867873902",
@@ -7945,7 +7945,7 @@ var _Atm = (function () {
       jibun: "경기도 부천시 괴안동 118-20",
     },
     {
-      name: ["뉴심곡타운G"],
+      name: ["뉴심곡타운G", "뉴심곡타운GS"],
       addr: "경기도 부천시 부천로30번길 10",
       x: "936744.53172331",
       y: "1943087.5522089568",
@@ -11046,6 +11046,20 @@ var _Atm = (function () {
       x: "928566.2702212301",
       y: "1934544.457651476",
       jibun: "인천광역시 남동구 고잔동 630 남동공단산업용품상가",
+    },
+    {
+      name: ["상동뱅뱅G"],
+      addr: "경기도 부천시 송내대로265번길 85",
+      x: "934059.1087938668",
+      y: "1945604.511224107",
+      jibun: "경기도 부천시 상동 535-1 뱅뱅프라자",
+    },
+    {
+      name: ["부평포인트G"],
+      addr: "인천광역시 부평구 부흥로366번길 17",
+      x: "932152.7323261439",
+      y: "1944478.5986940823",
+      jibun: "인천광역시 부평구 부평동 156-15",
     },
   ];
 
