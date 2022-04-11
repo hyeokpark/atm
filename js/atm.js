@@ -3,7 +3,7 @@ var _Atm = (function () {
   //var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png';
   //var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1586523871/{z}/{x}/{y}.png';
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1648113111/{z}/{x}/{y}.png";
+    "https://map.pstatic.net/nrb/styles/basic/1649404669/{z}/{x}/{y}.png";
 
   var dataArr = [
     {
@@ -6507,7 +6507,7 @@ var _Atm = (function () {
       jibun: "경기도 김포시 마산동 647-2",
     },
     {
-      name: ["김포센트럴점G"],
+      name: ["김포센트럴점G", "김포한강금융신한"],
       addr: "경기도 김포시 김포한강9로 73",
       x: "922850.990300437",
       y: "1960789.6949431286",
@@ -11060,6 +11060,20 @@ var _Atm = (function () {
       x: "932152.7323261439",
       y: "1944478.5986940823",
       jibun: "인천광역시 부평구 부평동 156-15",
+    },
+    {
+      name: ["풍무본점M"],
+      addr: "경기도 김포시 풍무로 73",
+      x: "931251.4412104734",
+      y: "1956138.799175363",
+      jibun: "경기도 김포시 풍무동 421-8",
+    },
+    {
+      name: ["불로디지털라운지신한"],
+      addr: "인천광역시 서구 검단로 856",
+      x: "928703.5085764262",
+      y: "1958029.9250210878",
+      jibun: "인천광역시 서구 불로동 182-2",
     },
   ];
 
