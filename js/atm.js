@@ -3,7 +3,7 @@ var _Atm = (function () {
   //var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png';
   //var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1586523871/{z}/{x}/{y}.png';
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1649404669/{z}/{x}/{y}.png";
+    "https://map.pstatic.net/nrb/styles/basic/1650616043/{z}/{x}/{y}.png";
 
   var dataArr = [
     {
@@ -11102,6 +11102,20 @@ var _Atm = (function () {
       x: "933013.0359974448",
       y: "1950284.1963337208",
       jibun: "인천광역시 계양구 병방동 109-30 돌샘프라자",
+    },
+    {
+      name: ["디지털석남동"],
+      addr: "인천광역시 서구 가정로 212",
+      x: "926845.3248920566",
+      y: "1945241.6733567803",
+      jibun: "인천광역시 서구 석남동 540-16",
+    },
+    {
+      name: ["주안퍼스트G"],
+      addr: "인천광역시 미추홀구 경원대로833번길 54",
+      x: "928033.4329929841",
+      y: "1940104.0965145095",
+      jibun: "인천광역시 미추홀구 주안동 406-37",
     },
   ];
 
