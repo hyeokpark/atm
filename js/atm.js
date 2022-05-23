@@ -6,7 +6,7 @@ var _Atm = (function () {
   //   "https://map.pstatic.net/nrb/styles/basic/1653019652/{z}/{x}/{y}@2x.png";
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1653019652/{z}/{x}/{y}@2x.png?mt=bg.ol.lko";
+    "http://nrbe.map.naver.net/styles/basic/1653019652/{z}/{x}/{y}@2x.png?mt=bg.ol.lko";
 
   var dataArr = [
     {
