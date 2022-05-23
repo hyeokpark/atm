@@ -7,6 +7,7 @@ var _Atm = (function () {
 
   var baseMapUrl =
     "https://map.pstatic.net/nrb/styles/basic/1653019652/{z}/{x}/{y}@2x.png?mt=bg.ol.lko";
+
   var dataArr = [
     {
       name: ["(주)비에스이"],
