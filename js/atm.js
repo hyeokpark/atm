@@ -3,7 +3,7 @@ var _Atm = (function () {
   //var baseMapUrl = 'http://xdworld.vworld.kr:8080/2d/Base/service/{z}/{x}/{y}.png';
   //var baseMapUrl = 'https://map.pstatic.net/nrb/styles/basic/1586523871/{z}/{x}/{y}.png';
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1653019652/{z}/{x}/{y}.png";
+    "https://map.pstatic.net/nrb/styles/basic/1653019652/{z}/{x}/{y}@2x.png";
 
   var dataArr = [
     {
