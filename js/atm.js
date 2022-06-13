@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1653629123/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1654767591/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -12285,6 +12285,20 @@ var _Atm = (function () {
       x: "928477.1390681048",
       y: "1940701.3795637535",
       jibun: "인천광역시 미추홀구 주안동 927-26",
+    },
+    {
+      name: ["주안리치G"],
+      addr: "인천광역시 미추홀구 미추홀대로587번길 94",
+      x: "926973.8172319883",
+      y: "1939316.1350278594",
+      jibun: "인천광역시 미추홀구 주안동 1421-49",
+    },
+    {
+      name: ["부평마사회G"],
+      addr: "인천광역시 부평구 장제로 48",
+      x: "931924.966630925",
+      y: "1943674.7077182634",
+      jibun: "인천광역시 부평구 부평동 161-4 다인팰리스",
     },
   ];
 
