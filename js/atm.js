@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1654767591/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1655974504/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -12327,6 +12327,27 @@ var _Atm = (function () {
       x: "924666.274551108",
       y: "1938519.9673470305",
       jibun: "인천광역시 미추홀구 학익동 744-1",
+    },
+    {
+      name: ["부평이안G"],
+      addr: "인천광역시 부평구 경인로834번길 50",
+      x: "930731.5147961399",
+      y: "1942719.4773954637",
+      jibun: "인천광역시 부평구 부평동 768-316 이안빌리지",
+    },
+    {
+      name: ["금정AK점G"],
+      addr: "경기도 군포시 엘에스로 143",
+      x: "950871.6932333689",
+      y: "1930602.624266957",
+      jibun: "경기도 군포시 금정동 916 힐스테이트 금정역",
+    },
+    {
+      name: ["정왕제일G"],
+      addr: "경기도 시흥시 역전로 33",
+      x: "934034.4757548068",
+      y: "1926956.78069895",
+      jibun: "경기도 시흥시 정왕동 1398",
     },
   ];
 
