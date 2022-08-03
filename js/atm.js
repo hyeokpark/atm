@@ -12412,7 +12412,6 @@ var _Atm = (function () {
       y: "1944076.0303904",
       jibun: "인천광역시 중구 중산동 1944-5",
     },
-    { name: [""], x: "", y: "", jibun: "" },
   ];
 
   var resultArr = [];
