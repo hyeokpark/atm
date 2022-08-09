@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1658486435/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1659608803/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -8210,7 +8210,7 @@ var _Atm = (function () {
       jibun: "인천광역시 중구 운서동 2911-5",
     },
     {
-      name: ["검암역"],
+      name: ["검암역", "S검암역G"],
       addr: "인천광역시 서구 검바위로 26",
       x: "927017.6637169635",
       y: "1952461.8812724035",
@@ -12488,6 +12488,20 @@ var _Atm = (function () {
       x: "907523.9816091845",
       y: "1938340.176259337",
       jibun: "인천광역시 중구 운서동 3215 영종도 대중18홀골프장",
+    },
+    {
+      name: ["영종베스트G"],
+      addr: "인천광역시 중구 흰바위로 22",
+      x: "910474.13728142",
+      y: "1944135.0969626433",
+      jibun: "인천광역시 중구 운서동 2788-2 금호베스트빌",
+    },
+    {
+      name: ["경서타운G"],
+      addr: "인천광역시 서구 경서로 18",
+      x: "925386.57649266",
+      y: "1950878.6945354403",
+      jibun: "인천광역시 서구 경서동 761-8",
     },
   ];
 
