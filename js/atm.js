@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1659608803/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1660292222/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -6421,7 +6421,7 @@ var _Atm = (function () {
       jibun: "경기도 김포시 북변동 819 김포프라자",
     },
     {
-      name: ["작전드림점M"],
+      name: ["작전드림점M", "작전디센트G"],
       addr: "인천광역시 계양구 아나지로248번길 1",
       x: "931039.3388073477",
       y: "1947608.5204498083",
@@ -12502,6 +12502,13 @@ var _Atm = (function () {
       x: "925386.57649266",
       y: "1950878.6945354403",
       jibun: "인천광역시 서구 경서동 761-8",
+    },
+    {
+      name: ["계양현대G"],
+      addr: "인천광역시 계양구 새벌로133번길 6",
+      x: "930759.6244962767",
+      y: "1948056.0353919333",
+      jibun: "인천광역시 계양구 효성동 280-5 현대3차아파트",
     },
   ];
 
