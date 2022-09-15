@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1660877334/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1662094398/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -12572,6 +12572,27 @@ var _Atm = (function () {
       x: "925107.8397559568",
       y: "1951163.9067475302",
       jibun: "인천광역시 서구 경서동 743-4",
+    },
+    {
+      name: ["남동마크원G"],
+      addr: "인천광역시 남동구 청능대로 451",
+      x: "930020.6703598402",
+      y: "1933628.4667868568",
+      jibun: "인천광역시 남동구 고잔동 649",
+    },
+    {
+      name: ["남동청류지산G"],
+      addr: "인천광역시 남동구 호구포로 139",
+      x: "929603.75346473",
+      y: "1933352.4824918024",
+      jibun: "인천광역시 남동구 고잔동 662-3",
+    },
+    {
+      name: ["안산삼익G"],
+      addr: "경기도 안산시 단원구 새뿔길 55",
+      x: "935977.5004282102",
+      y: "1926708.9722439325",
+      jibun: "경기도 안산시 단원구 신길동 1438 삼익아파트",
     },
   ];
 
