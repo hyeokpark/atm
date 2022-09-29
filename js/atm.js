@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1662094398/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1663918673/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -12607,6 +12607,13 @@ var _Atm = (function () {
       x: "910327.9528449406",
       y: "1944921.9792047217",
       jibun: "인천광역시 중구 운서동 2708-1 풍림아이원아파트",
+    },
+    {
+      name: ["검단타운G"],
+      addr: "인천광역시 서구 서로3로 225",
+      x: "930085.0890858925",
+      y: "1955894.9045411334",
+      jibun: "인천광역시 서구 원당동 0 검단 파라곤 보타닉 파크",
     },
   ];
 
