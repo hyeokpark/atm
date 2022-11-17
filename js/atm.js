@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1665119629/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1667468875/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -12775,6 +12775,27 @@ var _Atm = (function () {
       x: "927445.0357952071",
       y: "1946147.48542618",
       jibun: "인천광역시 서구 석남동 111-88",
+    },
+    {
+      name: ["신흥아이파크G"],
+      addr: "인천광역시 중구 인항로 34",
+      x: "923417.1373263632",
+      y: "1940124.6095388168",
+      jibun: "인천광역시 중구 신흥동3가 7-326 현대상가",
+    },
+    {
+      name: ["인천수협결합"],
+      addr: "인천광역시 부평구 원적로 311",
+      x: "929371.0354806134",
+      y: "1945344.1335149934",
+      jibun: "인천광역시 부평구 산곡동 87-803",
+    },
+    {
+      name: ["문학에이스SE"],
+      addr: "인천광역시 미추홀구 문학길 47",
+      x: "927565.6715528108",
+      y: "1937800.9187089312",
+      jibun: "인천광역시 미추홀구 문학동 371-4",
     },
   ];
 
