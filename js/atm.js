@@ -12832,7 +12832,6 @@ var _Atm = (function () {
       y: "1935725.20723715",
       jibun: "인천광역시 연수구 연수동 589 연수역",
     },
-    { name: [""], x: "", y: "", jibun: "" },
   ];
 
   var resultArr = [];
