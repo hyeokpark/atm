@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1671768497/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1672979885/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -12894,6 +12894,13 @@ var _Atm = (function () {
       x: "932341.9523775396",
       y: "1949131.8102759225",
       jibun: "인천광역시 계양구 계산동 1066-1 정현빌딩",
+    },
+    {
+      name: ["스퀘어원"],
+      addr: "인천광역시 연수구 청능대로 210",
+      x: "927749.2848215923",
+      y: "1934410.284882194",
+      jibun: "인천광역시 연수구 동춘동 926 스퀘어원",
     },
   ];
 
