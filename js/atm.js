@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1672979885/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1673590395/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -12901,6 +12901,20 @@ var _Atm = (function () {
       x: "927749.2848215923",
       y: "1934410.284882194",
       jibun: "인천광역시 연수구 동춘동 926 스퀘어원",
+    },
+    {
+      name: ["웰카운티2단지"],
+      addr: "인천광역시 연수구 해송로 70",
+      x: "924810.4292837726",
+      y: "1931602.640250668",
+      jibun: "인천광역시 연수구 송도동 9-29 송도웰카운티2단지",
+    },
+    {
+      name: ["간석남부역G"],
+      addr: " 인천광역시 남동구 석산로9번길 26",
+      x: "928913.80085283",
+      y: "1940816.2598682432",
+      jibun: "인천광역시 남동구 간석동 390",
     },
   ];
 
