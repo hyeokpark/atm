@@ -1,0 +1,212 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>CSV Map</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rvqnx5gy9k"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=rvqnx5gy9k&submodules=geocoder"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width:100%; 
+            height:100%;
+        }
+        body {
+          font-family: "Lato", sans-serif;
+        }
+        
+        .sidenav {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 2;
+          top: 0;
+          left: 0;
+          background-color: #fff;
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 60px;
+        }
+        
+        .sidenav a {
+          padding: 8px 8px 8px 32px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #818181;
+          display: block;
+          transition: 0.3s;
+        }
+        
+        .sidenav a:hover {
+          color: #f1f1f1;
+        }
+        
+        .sidenav .closebtn {
+          position: absolute;
+          top: 0;
+          right: 25px;
+          font-size: 36px;
+          margin-left: 50px;
+        }
+        
+        @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
+        }
+        </style>
+  </head>
+
+  <body style="user-select: none;">
+    <div style="position: absolute;
+    z-index: 2;
+    padding: 5 5;
+    border: 1px solid;
+    background: antiquewhite;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 13px;
+    user-select: none;
+    " onclick="openNav();">Open</div>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+       <input type="file" id="file"/>
+       <div id="legend" style="padding: 10px 10px;"></div>
+    </div>
+    <div id="naver-map" style="width:100%; height:100%; position: absolute !important; top: 0px !important; z-index: 1;"></div>
+    <script>
+    var markers = [];
+    var infoWindows = [];
+    var colorObj = {};
+    var circles = [];
+
+    var map = new naver.maps.Map('naver-map', {
+        zoom: 7,
+        scaleControl: true,
+        logoControl: false,
+        mapDataControl: false,
+        zoomControl: true,
+        zoomControlOptions: {
+            style: naver.maps.ZoomControlStyle.SMALL,
+            position: naver.maps.Position.TOP_RIGHT
+        },
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: naver.maps.MapTypeControlStyle.BUTTON,
+            position: naver.maps.Position.TOP_RIGHT
+        },
+        minZoom: 6
+    });
+
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "350px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+
+    document.getElementById('file').addEventListener("change", function(event){
+        var reader = new FileReader();
+
+        reader.onload = function(){
+            markers = [];
+            infoWindows = [];
+            colorObj = {};
+            circles = [];
+
+            var csvList = reader.result.split('\r\n');
+            var results = [];
+            for(var i = 1; i < csvList.length; i++){
+                var splitText = csvList[i].split(',');
+
+                if(splitText[4] && splitText[3]){
+                    var color_r = Math.floor(Math.random() * 127 + 128).toString(16);
+                    var color_g = Math.floor(Math.random() * 127 + 128).toString(16);
+                    var color_b = Math.floor(Math.random() * 127 + 128).toString(16);
+
+                    colorObj[splitText[1]] = {isOn: true, color: '#' + color_r + color_g + color_b};
+
+                    results.push({
+                        flagId: splitText[0],
+                        flag: splitText[1],
+                        title: splitText[2],
+                        x: splitText[4],
+                        y: splitText[3]
+                    })
+                }
+            }
+
+            for(var i = 0; i < results.length; i++){
+                var marker = new naver.maps.Marker({
+                    position: new naver.maps.LatLng(results[i].y, results[i].x),
+                    map: map,
+                    idx:i,
+                    flag:results[i].flag
+                });
+
+                var circle = new naver.maps.Circle({
+                    map: map,
+                    center: naver.maps.LatLng(results[i].y, results[i].x),
+                    radius: 900,
+                    fillColor: colorObj[results[i].flag].color,
+                });
+
+                var infoWindow = new naver.maps.InfoWindow({
+                    content: '<div style="width:150px; text-align:center;padding:10px; font-size:12px;">' + results[i].flag + ' - ' + results[i].title + '</div>'
+                });
+
+                markers.push(marker);
+                infoWindows.push(infoWindow);
+                circles.push(circle);
+
+                naver.maps.Event.addListener(marker, 'click', function(event){
+
+                    var marker = markers[event.overlay.idx];
+                    var infoWindow = infoWindows[event.overlay.idx];
+
+                    if (infoWindow.getMap()) {
+                        infoWindow.close();
+                    } else {
+                        infoWindow.open(map, marker);
+                    }
+                });
+            }
+
+            var html = '<table style="font-size:13px">';
+            Object.keys(colorObj).forEach((key, idx)=>{
+                html+='<tr><th>' + key + '</th>';
+                html+='<td id="legend-item' + idx + '"onClick="onClickLegend(\'' + key + '\','+idx+');"';
+                html+='style="font-size: 11px; text-align: center; border: 1px solid; cursor:pointer; width: 100px; background:'+colorObj[key].color+'"></td>';
+                html+='</tr>';
+            })
+            html += '</table>';
+            document.getElementById("legend").innerHTML = html;
+        };
+        reader.readAsText(event.target.files[0]);
+
+    });
+
+    function onClickLegend(flag, idx){
+        colorObj[flag].isOn = !colorObj[flag].isOn;
+
+        if(colorObj[flag].isOn){
+            document.getElementById('legend-item'+idx).style.background = colorObj[flag].color;
+            document.getElementById('legend-item'+idx).innerText = '';
+        }else{
+            document.getElementById('legend-item'+idx).style.background = "#fff";
+            document.getElementById('legend-item'+idx).innerText = 'off';
+        }
+
+        for(var i = 0; i < markers.length; i++){
+            if(markers[i].flag === flag){
+                markers[i].setVisible(colorObj[flag].isOn);
+                circles[i].setVisible(colorObj[flag].isOn);
+            }
+        }
+    }
+    </script>
+  </body>
+</html>
