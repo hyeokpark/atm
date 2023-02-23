@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    "https://map.pstatic.net/nrb/styles/basic/1675418445/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
+    "https://map.pstatic.net/nrb/styles/basic/1676618181/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko";
 
   var dataArr = [
     {
@@ -2210,7 +2210,7 @@ var _Atm = (function () {
       jibun: "경기도 시흥시 신천동 759",
     },
     {
-      name: ["구월점M"],
+      name: ["구월점M", "인천구월문화서로SE"],
       addr: "인천광역시 남동구 문화서로17번길 6",
       x: "928867.7313054034",
       y: "1938957.6338435733",
@@ -2476,7 +2476,7 @@ var _Atm = (function () {
       jibun: "인천광역시 남동구 만수동 983-1",
     },
     {
-      name: ["인천장수점M"],
+      name: ["인천장수점M", "인천장수주공SE"],
       addr: "인천광역시 남동구 장자로 1",
       x: "933651.07423761",
       y: "1939306.729553537",
@@ -12979,6 +12979,11 @@ var _Atm = (function () {
       y: "1939547.331584101",
       jibun: "경기도 시흥시 대야동 664-6",
     },
+    { "name": ["간석본점G"], "addr": "인천광역시 남동구 용천로 197-1", "x": "930495.8545603", "y": "1941189.1252884832", "jibun": "인천광역시 남동구 간석동 54-23" },
+    { "name": ["시흥메디캐슬G"], "addr": "경기도 시흥시 은계중앙로306번길 82", "x": "937623.9461963992", "y": "1939335.9291415848", "jibun": "경기도 시흥시 대야동 650-1" },
+    { "name": ["인천담방마을G"], "addr": "인천광역시 남동구 매소홀로 1040", "x": "932637.1839435156", "y": "1938070.3861830593", "jibun": "인천광역시 남동구 만수동 1049" },
+    { "name": ["구월중앙M"], "addr": "인천광역시 남동구 인주대로618번길 28", "x": "929707.68066771", "y": "1939102.4671608736", "jibun": "인천광역시 남동구 구월동 201-169" },
+    { "name": ["인천대공원G"], "addr": "인천광역시 남동구 무네미로 286", "x": "933953.9631740332", "y": "1940642.0298199705", "jibun": "인천광역시 남동구 장수동 310" }
   ];
 
   var resultArr = [];
@@ -13491,7 +13496,7 @@ var _Atm = (function () {
         idx: selectArr[j],
         route: Math.sqrt(
           Math.pow(dataArr[idx].x - dataArr[selectArr[j]].x, 2) +
-            Math.pow(dataArr[idx].y - dataArr[selectArr[j]].y, 2)
+          Math.pow(dataArr[idx].y - dataArr[selectArr[j]].y, 2)
         ),
       });
     }
@@ -13695,8 +13700,8 @@ var _Atm = (function () {
       $(me).hide();
       $("#mother").append(
         '<br/><br/><input id="select' +
-          btnCnt +
-          '" class="selectBox" type="text"><input type="button" onclick="_Atm.setButton(this);" value="지점추가" class="plus" />'
+        btnCnt +
+        '" class="selectBox" type="text"><input type="button" onclick="_Atm.setButton(this);" value="지점추가" class="plus" />'
       );
 
       $("#select" + btnCnt).autocomplete({
