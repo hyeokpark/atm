@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1682000682/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1683869605/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -11789,7 +11789,7 @@ var _Atm = (function () {
       jibun: '경기도 시흥시 배곧동 229-1 배곧 유호 N-CITY 2차',
     },
     {
-      name: ['시흥정왕군서점-M'],
+      name: ['시흥정왕군서점-M', '시흥군서희망SE'],
       addr: '경기도 시흥시 봉우재로23번길 10',
       x: '932941.2155760934',
       y: '1927678.6774286437',
@@ -13329,6 +13329,13 @@ var _Atm = (function () {
       x: '941005.1320612894',
       y: '1940086.8844018588',
       jibun: '경기도 시흥시 과림동 11-1 한국글로벌중학교, 한국조리과학고등학교',
+    },
+    {
+      name: ['정왕다사랑G'],
+      addr: '경기도 시흥시 정왕천로414번길 10',
+      x: '933833.2813747234',
+      y: '1927462.3486647033',
+      jibun: '경기도 시흥시 정왕동 1516-8',
     },
   ];
 
