@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1691716819/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1692326012/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -11180,7 +11180,7 @@ var _Atm = (function () {
       jibun: '경기도 시흥시 배곧동 128',
     },
     {
-      name: ['시흥봉우재로점-M'],
+      name: ['시흥봉우재로점-M', '정왕봉우재로SE'],
       addr: '경기도 시흥시 봉우재로36번길 8',
       x: '933125.5721754001',
       y: '1927671.7556464532',
@@ -11292,7 +11292,7 @@ var _Atm = (function () {
       jibun: '경기도 시흥시 정왕동 2210 STEEL LAND',
     },
     {
-      name: ['시흥배곧한라비발디', '배곧한라점-M'],
+      name: ['시흥배곧한라비발디', '배곧한라점-M 배곧한라에듀G'],
       addr: '경기도 시흥시 배곧1로 27-16',
       x: '930354.8116117474',
       y: '1929572.197390771',
@@ -13610,6 +13610,13 @@ var _Atm = (function () {
       x: '929669.6987957614',
       y: '1925714.6102996152',
       jibun: '경기도 시흥시 정왕동 2174-1 (주)대신',
+    },
+    {
+      name: ['시흥시화공단G'],
+      addr: '경기도 시흥시 경제로 281',
+      x: '931297.2458543386',
+      y: '1925566.8551047943',
+      jibun: '경기도 시흥시 정왕동 1375-10 (주)에이피테크',
     },
   ];
 
