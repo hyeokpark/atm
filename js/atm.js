@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1698996453/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1700204852/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -13764,6 +13764,20 @@ var _Atm = (function () {
       x: '926800.4344150093',
       y: '1939027.2028624136',
       jibun: '인천광역시 미추홀구 주안동 830-2 주안파크자이더플래티넘',
+    },
+    {
+      name: ['부흥중앙G'],
+      addr: '인천광역시 부평구 부흥북로15번길 4',
+      x: '931391.9049549536',
+      y: '1944993.66563774',
+      jibun: '인천광역시 부평구 부평동 433-107',
+    },
+    {
+      name: ['연수주공G'],
+      addr: '인천광역시 연수구 원인재로 315',
+      x: '928628.6627346983',
+      y: '1936148.279258436',
+      jibun: '인천광역시 연수구 연수동 533 주공1단지, 2단지아파트',
     },
   ];
 
