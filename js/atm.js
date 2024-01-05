@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1702623821/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1703209430/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -13900,7 +13900,7 @@ var _Atm = (function () {
       jibun: '인천광역시 서구 경서동 689 인천서부산업단지관리공단',
     },
     {
-      name: ['루원스타G'],
+      name: ['루원스타G', '루원베르힐G'],
       addr: '인천광역시 서구 서곶로 50',
       x: '927377.9831915181',
       y: '1947336.6975456309',
@@ -13919,6 +13919,13 @@ var _Atm = (function () {
       x: '930352.3110248749',
       y: '1955130.9490605644',
       jibun: '인천광역시 서구 원당동 1043-11 선우프라자',
+    },
+    {
+      name: ['영종갤러리84G'],
+      addr: '인천광역시 중구 미단행복로 65',
+      x: '913094.4897540088',
+      y: '1948259.4894115366',
+      jibun: '인천광역시 중구 운북동 1266-18',
     },
   ];
 
