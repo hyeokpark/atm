@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1708046734/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1709196067/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -13996,6 +13996,20 @@ var _Atm = (function () {
       x: '923913.5737733315',
       y: '1939496.85049761',
       jibun: '인천광역시 미추홀구 용현동 653 금호 어울림 4단지',
+    },
+    {
+      name: ['용현아너스빌G'],
+      addr: '인천광역시 미추홀구 아암대로 118',
+      x: '923175.7922909572',
+      y: '1939546.7914343476',
+      jibun: '인천광역시 미추홀구 용현동 627-12 용현오션뷰경남아너스빌아파트',
+    },
+    {
+      name: ['용현센터G'],
+      addr: '인천광역시 미추홀구 낙섬서로10번길 9-3',
+      x: '923438.9704854479',
+      y: '1939381.0467231106',
+      jibun: '인천광역시 미추홀구 용현동 627-219',
     },
   ];
   var resultArr = [];
