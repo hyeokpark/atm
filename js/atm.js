@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1709196067/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1709882468/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -9717,7 +9717,7 @@ var _Atm = (function () {
       jibun: '인천광역시 서구 청라동 163-3 홍익파크',
     },
     {
-      name: ['청라풍경채M'],
+      name: ['청라풍경채M', '청라제일풍경채G'],
       addr: '인천광역시 서구 청라한울로 95',
       x: '924656.8646839634',
       y: '1949161.676724142',
@@ -14010,6 +14010,20 @@ var _Atm = (function () {
       x: '923438.9704854479',
       y: '1939381.0467231106',
       jibun: '인천광역시 미추홀구 용현동 627-219',
+    },
+    {
+      name: [''],
+      addr: '인천광역시 서구 염곡로464번길 23',
+      x: '926839.1715862257',
+      y: '1947776.8066694778',
+      jibun: '인천광역시 서구 가정동 617-4 엔시티타워',
+    },
+    {
+      name: ['청라호반1차G'],
+      addr: '인천광역시 서구 청라라임로 109',
+      x: '925181.1708157677',
+      y: '1949011.1478300365',
+      jibun: '인천광역시 서구 청라동 116-6 호반베르디움',
     },
   ];
   var resultArr = [];
