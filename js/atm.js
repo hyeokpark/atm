@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1717723233/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1720672449/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14108,6 +14108,27 @@ var _Atm = (function () {
       x: '930565.46246645',
       y: '1939891.5289978134',
       jibun: '인천광역시 남동구 구월동 26 (주)발해인터내셔날',
+    },
+    {
+      name: ['인천점G'],
+      addr: '인천광역시 남동구 구월남로48번길 23',
+      x: '928758.2687957739',
+      y: '1939582.56706566',
+      jibun: '인천광역시 남동구 구월동 1101-7',
+    },
+    {
+      name: ['은계성강G'],
+      addr: '경기도 시흥시 은계남길 32',
+      x: '937934.6075625173',
+      y: '1937037.3285730793',
+      jibun: '경기도 시흥시 은행동 672-2 성강해오름 지식산업센터',
+    },
+    {
+      name: ['디지털라운지간석동'],
+      addr: '인천광역시 남동구 남동대로 880-1',
+      x: '930005.4129785053',
+      y: '1940480.125216248',
+      jibun: '인천광역시 남동구 간석동 272-1 가로판매대',
     },
   ];
   var resultArr = [];
