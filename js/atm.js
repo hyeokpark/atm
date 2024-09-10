@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1724400689/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1725605431/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14192,6 +14192,27 @@ var _Atm = (function () {
       x: '935089.470102217',
       y: '1946793.6899769558',
       jibun: '경기도 부천시 오정구 삼정동 365 부천테크노파크',
+    },
+    {
+      name: ['옥길테크노벨리G'],
+      addr: '경기도 부천시 소사구 범안로219번길 71',
+      x: '939213.0429388629',
+      y: '1940858.088244683',
+      jibun: '경기도 부천시 소사구 옥길동 775-7 옥길지식산업센터',
+    },
+    {
+      name: ['온수현대G'],
+      addr: '서울특별시 구로구 부일로9길 135-4',
+      x: '940042.8140426499',
+      y: '1944427.6322795264',
+      jibun: '서울특별시 구로구 온수동 130-4',
+    },
+    {
+      name: ['구로우신G'],
+      addr: '서울특별시 구로구 오리로 1262',
+      x: '940873.06704131',
+      y: '1944122.4969247533',
+      jibun: '서울특별시 구로구 궁동 212-14',
     },
   ];
   var resultArr = [];
