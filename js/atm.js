@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1725605431/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1726797632/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14241,6 +14241,20 @@ var _Atm = (function () {
       x: '936762.5887311827',
       y: '1944374.762063879',
       jibun: '경기도 부천시 원미구 심곡동 88-21',
+    },
+    {
+      name: ['고강센터G'],
+      addr: '경기도 부천시 오정구 성지로 114',
+      x: '939161.6079685795',
+      y: '1947972.8409513636',
+      jibun: '경기도 부천시 오정구 고강동 290-4',
+    },
+    {
+      name: ['뉴소사역G'],
+      addr: '경기도 부천시 소사구 경인옛로 25',
+      x: '937647.0856876927',
+      y: '1942684.122995054',
+      jibun: '경기도 부천시 소사구 소사본동 70-16 부천 한신더휴 메트로',
     },
   ];
   var resultArr = [];
