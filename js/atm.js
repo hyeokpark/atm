@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1732841753/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1734087730/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14438,7 +14438,25 @@ var _Atm = (function () {
     "x": "939207.5207303199",
     "y": "1935478.0982946535",
     "jibun": "경기도 시흥시 매화동 221-4"
-  }
+  },
+  {
+    "name": [
+      "장현포네마제G"
+    ],
+    "addr": "경기도 시흥시 황고개로 469",
+    "x": "937148.4610597743",
+    "y": "1930636.7544786292",
+    "jibun": "경기도 시흥시 장곡동 913 장현 더 포레마제"
+  },
+  {
+    "name": [
+      "오이도옥터G"
+    ],
+    "addr": "경기도 시흥시 옥터로 55",
+    "x": "928363.1933771202",
+    "y": "1927417.6680450165",
+    "jibun": "경기도 시흥시 정왕동 2200-1 레오빌딩"
+  },
   ];
   var resultArr = [];
 
