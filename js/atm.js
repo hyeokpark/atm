@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1734087730/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1735313972/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14456,6 +14456,24 @@ var _Atm = (function () {
     "x": "928363.1933771202",
     "y": "1927417.6680450165",
     "jibun": "경기도 시흥시 정왕동 2200-1 레오빌딩"
+  },
+  {
+    "name": [
+      "정왕골드IGA"
+    ],
+    "addr": "경기도 시흥시 옥구천동로 114",
+    "x": "930066.1887222666",
+    "y": "1926641.420780532",
+    "jibun": "경기도 시흥시 정왕동 1359-10"
+  },
+  {
+    "name": [
+      "스마트번영G"
+    ],
+    "addr": "경기도 안산시 단원구 번영로132번길 4",
+    "x": "932516.7920399555",
+    "y": "1924927.7199738724",
+    "jibun": "경기도 안산시 단원구 성곡동 669"
   },
   ];
   var resultArr = [];
