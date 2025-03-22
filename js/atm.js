@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1740098178/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1742534551/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14636,7 +14636,8 @@ var _Atm = (function () {
     "x": "926661.2984062643",
     "y": "1940132.2968110703",
     "jibun": "인천광역시 미추홀구 주안동 632-1"
-  }
+  },
+  {"name":["산곡마장로GS"],"addr":"인천광역시 부평구 마장로 246","x":"929579.318348479","y":"1944821.1238199612","jibun":"인천광역시 부평구 산곡동 251-3 새올 요양병원"}
   ];
   var resultArr = [];
 
