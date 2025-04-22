@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1744336608/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1744942614/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14807,7 +14807,25 @@ var _Atm = (function () {
     "x": "912141.7337451042",
     "y": "1942535.6155692143",
     "jibun": "인천광역시 중구 운남동 1778 운서역푸르지오더스카이"
-  }
+  },
+    {
+    "name": [
+      "원당센터G"
+    ],
+    "addr": "인천광역시 서구 원당대로835번길 12",
+    "x": "928912.5306161335",
+    "y": "1955380.1771981",
+    "jibun": "인천광역시 서구 원당동 817-8"
+  },
+  {
+    "name": [
+      "아시아드볼닝"
+    ],
+    "addr": "인천광역시 서구 봉수대로 806",
+    "x": "926165.0848316308",
+    "y": "1950187.6669499525",
+    "jibun": "인천광역시 서구 연희동 826 인천아시아드주경기장"
+  },
   ];
   var resultArr = [];
 
