@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1744942614/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1747354864/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14835,6 +14835,16 @@ var _Atm = (function () {
     "y": "1954834.8475231421",
     "jibun": "인천광역시 서구 원당동 1084-1 검단신도시 대방디에트르 리버파크"
   },
+    {
+    "name": [
+      "인천병원장례식장"
+    ],
+    "addr": "인천광역시 부평구 무네미로 446",
+    "x": "933928.3884844664",
+    "y": "1942176.4345007278",
+    "jibun": "인천광역시 부평구 구산동 47-3 인천중앙병원 및 재활공학연구소"
+  },
+    
   ];
   var resultArr = [];
 
