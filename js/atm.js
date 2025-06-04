@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1747354864/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1748605148/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -3407,7 +3407,7 @@ var _Atm = (function () {
       jibun: '인천광역시 미추홀구 용현동 139-3',
     },
     {
-      name: ['용현제일점G'],
+      name: ['용현제일점G','용현에이스G'],
       addr: '인천광역시 미추홀구 토금남로 5',
       x: '923352.4605928194',
       y: '1939665.3319581402',
@@ -14844,6 +14844,15 @@ var _Atm = (function () {
     "y": "1942176.4345007278",
     "jibun": "인천광역시 부평구 구산동 47-3 인천중앙병원 및 재활공학연구소"
   },
+    {
+    "name": [
+      "신흥하늘G"
+    ],
+    "addr": "인천광역시 중구 도원로 6",
+    "x": "923634.6796478201",
+    "y": "1941003.2966457536",
+    "jibun": "인천광역시 중구 신흥동3가 11-14 가람할인마트"
+  }
     
   ];
   var resultArr = [];
