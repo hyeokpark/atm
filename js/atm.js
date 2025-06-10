@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1748605148/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1749117537/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14852,6 +14852,24 @@ var _Atm = (function () {
     "x": "923634.6796478201",
     "y": "1941003.2966457536",
     "jibun": "인천광역시 중구 신흥동3가 11-14 가람할인마트"
+  },
+    {
+    "name": [
+      "동구풍림G"
+    ],
+    "addr": "인천광역시 동구 송미로 7",
+    "x": "924646.0323622893",
+    "y": "1942737.718164573",
+    "jibun": "인천광역시 동구 송림동 11-102"
+  },
+  {
+    "name": [
+      "상상플랫폼G"
+    ],
+    "addr": "인천광역시 중구 월미로 33",
+    "x": "921718.3182404598",
+    "y": "1942240.9611177072",
+    "jibun": "인천광역시 중구 북성동1가 4-11 상상플랫폼"
   }
     
   ];
