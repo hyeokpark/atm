@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1750413718/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1751014798/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14962,7 +14962,25 @@ var _Atm = (function () {
     "x": "920060.8654345567",
     "y": "1941602.6347037377",
     "jibun": "인천광역시 중구 북성동1가 106-7 국립인천해양박물관"
-  }
+  },
+    {
+    "name": [
+      "금호프레시G"
+    ],
+    "addr": "인천광역시 미추홀구 낙섬동로 15",
+    "x": "923790.2216776898",
+    "y": "1939155.9996878672",
+    "jibun": "인천광역시 미추홀구 용현동 627-40 금호타운"
+  },
+  {
+    "name": [
+      "이마트24월미상륙"
+    ],
+    "addr": "인천광역시 중구 월미문화로 37-1",
+    "x": "920224.5876758939",
+    "y": "1942130.9581222292",
+    "jibun": "인천광역시 중구 북성동1가 98-338"
+  },
   ];
   var resultArr = [];
 
