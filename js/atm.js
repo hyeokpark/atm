@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1751014798/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1752157038/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -7188,7 +7188,7 @@ var _Atm = (function () {
       jibun: '인천광역시 미추홀구 용현동 450-5 인천보훈병원',
     },
     {
-      name: ['용현엑슬루점G'],
+      name: ['용현엑슬루점G','용현엑슬루타워G'],
       addr: '인천광역시 미추홀구 아암대로29번길 16',
       x: '923725.7099880849',
       y: '1940209.9844518485',
@@ -14981,6 +14981,24 @@ var _Atm = (function () {
     "y": "1942130.9581222292",
     "jibun": "인천광역시 중구 북성동1가 98-338"
   },
+  {
+    "name": [
+      "남동수현G"
+    ],
+    "addr": "인천광역시 남동구 수현로 18",
+    "x": "933682.3369355337",
+    "y": "1940770.3191865878",
+    "jibun": "인천광역시 남동구 장수동 390-3 해오름파크"
+  },
+  {
+    "name": [
+      "로또명당카페시흥"
+    ],
+    "addr": "경기도 시흥시 거북섬2길 21",
+    "x": "927091.6423237682",
+    "y": "1925637.219933045",
+    "jibun": "경기도 시흥시 정왕동 2703-2 폴리프라자I"
+  }
   ];
   var resultArr = [];
 
