@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1752157038/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1753418091/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -14998,7 +14998,25 @@ var _Atm = (function () {
     "x": "927091.6423237682",
     "y": "1925637.219933045",
     "jibun": "경기도 시흥시 정왕동 2703-2 폴리프라자I"
-  }
+  },
+  {
+    "name": [
+      "아이지에이마트"
+    ],
+    "addr": "인천광역시 서구 원석로196번안길 12-2",
+    "x": "924656.4879156705",
+    "y": "1946415.3677605642",
+    "jibun": "인천광역시 서구 원창동 491-1"
+  },
+  {
+    "name": [
+      "자동차매매간석"
+    ],
+    "addr": "인천광역시 남동구 방축로 414",
+    "x": "928187.2471266966",
+    "y": "1941584.3159902603",
+    "jibun": "인천광역시 남동구 간석동 616-85 간석자동차매매단지"
+  },
   ];
   var resultArr = [];
 
