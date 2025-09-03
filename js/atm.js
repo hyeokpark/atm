@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1755169776/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1756430165/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -300,7 +300,7 @@ var _Atm = (function () {
       jibun: '인천광역시 서구 연희동 708-6',
     },
     {
-      name: ['선학역점M'],
+      name: ['선학역점M','인천선학학나래SE'],
       addr: '인천광역시 연수구 학나래로118번길 23',
       x: '929081.3471575531',
       y: '1936767.7973411446',
@@ -15178,7 +15178,24 @@ var _Atm = (function () {
     "x": "925320.6727420264",
     "y": "1936490.7258209046",
     "jibun": "인천광역시 연수구 옥련동 341-39"
+  },{
+    "name": [
+      "남동NIC달빛G"
+    ],
+    "addr": "인천광역시 남동구 은봉로 52",
+    "x": "928973.2060149312",
+    "y": "1934913.1681844834",
+    "jibun": "인천광역시 남동구 논현동 446-3 NIC지식산업센터"
   },
+  {
+    "name": [
+      "토비스송도신공장"
+    ],
+    "addr": "인천광역시 연수구 하모니로226번길 15",
+    "x": "923632.9221998043",
+    "y": "1931398.9413020704",
+    "jibun": "인천광역시 연수구 송도동 10-46 TOVIS 송도 신공장"
+  }
   ];
   var resultArr = [];
 
@@ -16000,6 +16017,7 @@ var _Atm = (function () {
     },
   };
 })();
+
 
 
 
