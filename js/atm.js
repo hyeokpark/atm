@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1764910002/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1765512691/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -15394,6 +15394,24 @@ var _Atm = (function () {
     "y": "1948186.9598939987",
     "jibun": "경기도 부천시 오정구 원종동 70-8"
   },
+     {
+    "name": [
+      "심곡센트럴G"
+    ],
+    "addr": "경기도 부천시 소사구 경인로 274-1",
+    "x": "936882.3576616321",
+    "y": "1942837.2381507792",
+    "jibun": "경기도 부천시 소사구 심곡본동 747-12 보강센트럴빌아파트"
+  },
+  {
+    "name": [
+      "소사행복G"
+    ],
+    "addr": "경기도 부천시 소사구 범안로 36",
+    "x": "938733.3198738862",
+    "y": "1942385.0333422627",
+    "jibun": "경기도 부천시 소사구 괴안동 71-31"
+  },
   ];
   var resultArr = [];
 
@@ -16215,6 +16233,7 @@ var _Atm = (function () {
     },
   };
 })();
+
 
 
 
