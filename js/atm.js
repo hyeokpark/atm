@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1775803083/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1776406510/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -15709,6 +15709,35 @@ var _Atm = (function () {
     "y": "1927905.6444936334",
     "jibun": "경기도 시흥시 정왕동 1977-3"
   },
+    [
+  {
+    "name": [
+      "장곡에이블G"
+    ],
+    "addr": "경기도 시흥시 장곡1로 11",
+    "x": "936652.0627989669",
+    "y": "1931412.3750777333",
+    "jibun": "경기도 시흥시 장곡동 882-2 에이블타워"
+  },
+  {
+    "name": [
+      "이마트24안산신길"
+    ],
+    "addr": "경기도 안산시 단원구 신길중앙로1길 12",
+    "x": "934430.7972144333",
+    "y": "1926770.0362024",
+    "jibun": "경기도 안산시 단원구 신길동 1394"
+  },
+  {
+    "name": [
+      "G&MI모텔"
+    ],
+    "addr": "경기도 시흥시 서촌상가4길 8-4",
+    "x": "932049.6324122001",
+    "y": "1927644.5744011002",
+    "jibun": "경기도 시흥시 정왕동 1732-6"
+  }
+]
   ];
   var resultArr = [];
 
