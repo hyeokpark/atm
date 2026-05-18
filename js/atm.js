@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1778232861/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1778829614/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -15753,6 +15753,15 @@ var _Atm = (function () {
     "x": "927589.7209677335",
     "y": "1940201.8392185331",
     "jibun": "인천광역시 미추홀구 주안동 0 포레나 미추홀"
+  },
+{
+    "name": [
+      "배곧프라자G"
+    ],
+    "addr": "경기도 시흥시 배곧4로 32-9",
+    "x": "931575.7442464668",
+    "y": "1931131.9611713667",
+    "jibun": "경기도 시흥시 배곧동 125 골든프라자"
   },
   ];
   var resultArr = [];
