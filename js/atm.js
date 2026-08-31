@@ -2,7 +2,7 @@ var _Atm = (function () {
   var map = null;
 
   var baseMapUrl =
-    'https://map.pstatic.net/nrb/styles/basic/1786078943/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
+    'https://map.pstatic.net/nrb/styles/basic/1787907321/{z}/{x}/{y}@2x.png?mt=bg.ol.sw.ar.lko';
 
   var dataArr = [
     {
@@ -16016,6 +16016,24 @@ var _Atm = (function () {
     "x": "930107.1842195666",
     "y": "1947777.8345944667",
     "jibun": "인천광역시 계양구 효성동 691 제일풍경채계양위너스카이2단지"
+  },
+   {
+    "name": [
+      "서구검암G"
+    ],
+    "addr": "인천광역시 서해구 도요지로 228-1",
+    "x": "927181.935887",
+    "y": "1951122.4975622003",
+    "jibun": "인천광역시 서해구 검암동 667-3"
+  },
+  {
+    "name": [
+      "검단뷰티플파크G"
+    ],
+    "addr": "인천광역시 검단구 보듬6로 10",
+    "x": "921774.8925383668",
+    "y": "1955438.3048975002",
+    "jibun": "인천광역시 검단구 오류동 1657-3"
   },
   ];
   var resultArr = [];
